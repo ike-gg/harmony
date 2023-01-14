@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Album from "./components/Album";
-import Sidebar from "./components/layout/Sidebar/Sidebar";
+import RootLayout from "./pages/RootLayout";
+import Navbar from "./components/navbar/Navbar";
+import Home from "./pages/Home";
 
 export interface AlbumAttributes {
   artistName: string;
@@ -31,11 +33,23 @@ export interface AlbumData {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        <Sidebar />
-      </>
-    ),
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "library",
+        index: true,
+        element: "Library!",
+      },
+      {
+        path: "search",
+        index: true,
+        element: "Search",
+      },
+    ],
   },
 ]);
 

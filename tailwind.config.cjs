@@ -8,7 +8,15 @@ module.exports = {
       },
       boxShadow: {
         solid: "0 0.25rem 0 0",
+        personal: "0 0.1rem 1rem 0",
       },
+      colors: {
+        primary: "#6f2dbd",
+        shadow: "#00000010",
+      },
+    },
+    fontFamily: {
+      sans: ['"Inter"', "sans-serif"],
     },
   },
   plugins: [],
