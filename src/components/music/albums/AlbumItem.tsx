@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import Artwork from "./Artwork";
+import Artwork from "../Artwork";
 
 interface Props {
   artwork: string;
@@ -9,7 +9,7 @@ interface Props {
   to: string;
 }
 
-const MusicCardItem: FC<Props> = ({ artwork, author, name, to }) => {
+const AlbumItem: FC<Props> = ({ artwork, author, name, to }) => {
   return (
     <Link to={to} className="inline-flex flex-col w-44 snap-center">
       <Artwork artworkUrl={artwork} size="small" />
@@ -21,4 +21,4 @@ const MusicCardItem: FC<Props> = ({ artwork, author, name, to }) => {
   );
 };
 
-export default MusicCardItem;
+export default AlbumItem;

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import getArtworkUrl from "../utils/artworkUrl";
+import getArtworkUrl from "../../utils/artworkUrl";
 
 interface Props {
   artworkUrl: string;
@@ -11,7 +11,7 @@ const Artwork: FC<Props> = ({ artworkUrl, size = "medium" }) => {
 
   return (
     <img
-      className="rounded-md aspect-square"
+      className="rounded-md aspect-square shadow-lg"
       src={url}
       alt="album artwork"
     ></img>
