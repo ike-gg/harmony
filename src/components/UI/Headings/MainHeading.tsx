@@ -6,7 +6,7 @@ interface Props {
 
 const MainHeading: FC<Props> = ({ children }) => {
   return (
-    <h1 className="text-5xl font-bold pl-4 text-neutral-700">{children}</h1>
+    <h1 className="text-5xl font-semibold pl-4 text-neutral-700">{children}</h1>
   );
 };
 

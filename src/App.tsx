@@ -4,19 +4,10 @@ import Album from "./components/Album";
 import RootLayout from "./pages/RootLayout";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/Home";
+import Test from "./pages/Test";
 
 export interface AlbumAttributes {
   artistName: string;
-  artwork: {
-    width: number;
-    height: number;
-    url: string;
-    bgColor: string;
-    textColor1: string;
-    textColor2: string;
-    textColor3: string;
-    textColor4: string;
-  };
   copyright: string;
   genreNames: string[];
   name: string;

@@ -1,3 +1,21 @@
-const Artwork = () => {};
+import { FC } from "react";
+import getArtworkUrl from "../utils/artworkUrl";
+
+interface Props {
+  artworkUrl: string;
+  size: "small" | "medium" | "large";
+}
+
+const Artwork: FC<Props> = ({ artworkUrl, size = "medium" }) => {
+  const url = getArtworkUrl(artworkUrl, size);
+
+  return (
+    <img
+      className="rounded-md aspect-square"
+      src={url}
+      alt="album artwork"
+    ></img>
+  );
+};
 
 export default Artwork;

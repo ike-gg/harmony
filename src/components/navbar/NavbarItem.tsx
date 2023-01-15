@@ -11,7 +11,7 @@ interface Props {
 
 const NavbarItem: FC<Props> = ({ to, iconName, end = false }) => {
   const baseClasses =
-    "bg-white/80 opacity-70 text-gray-400 border shadow-inner hover:opacity-100 cursor-pointer rounded-md";
+    "bg-white/80 opacity-70 text-neutral-400 border shadow-inner hover:opacity-100 cursor-pointer rounded-md";
   const activeClasses =
     "bg-primary/25 opacity-100 text-primary/75 border border-primary/20 shadow-inner hover:opacity-100 cursor-pointer rounded-md";
 
