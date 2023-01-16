@@ -26,8 +26,8 @@ export interface AlbumAttributes {
 }
 
 interface AlbumRelationships {
-  tracks: AlbumRelationshipTracks;
-  artists: AlbumRelationshipArtists;
+  tracks?: AlbumRelationshipTracks;
+  artists?: AlbumRelationshipArtists;
 }
 
 interface AlbumRelationshipArtists {
@@ -76,7 +76,7 @@ interface AlbumRelationshipTracksMusicVideo {
     name: string;
     previews: {
       url: string;
-      hlsUrl: string;
+      hlsUrl?: string;
       artwork: Artwork;
     };
     artistName: string;

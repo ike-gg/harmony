@@ -5,6 +5,7 @@ import SubHeading from "../components/UI/Headings/SubHeading";
 import MusicCardItem from "../components/music/albums/AlbumItem";
 import Paragraph from "../components/UI/Paragraph";
 import PopularAlbums from "../components/music/albums/PopularAlbums";
+import PopularSongs from "../components/music/songs/PopularSongs";
 
 const Home = () => {
   return (
@@ -18,6 +19,9 @@ const Home = () => {
         </Paragraph>
       </section>
       <PopularAlbums />
+      <PopularSongs />
+      <PopularAlbums />
+      <PopularSongs />
     </>
   );
 };

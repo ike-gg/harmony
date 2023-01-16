@@ -3,7 +3,7 @@ import getArtworkUrl from "../../utils/artworkUrl";
 
 interface Props {
   artworkUrl: string;
-  size: "small" | "medium" | "large";
+  size: "xsmall" | "small" | "medium" | "large";
 }
 
 const Artwork: FC<Props> = ({ artworkUrl, size = "medium" }) => {

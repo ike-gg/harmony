@@ -12,7 +12,7 @@ const SubHeading: FC<Props> = ({ children, isLoading }) => {
   }
 
   return (
-    <h2 className="text-3xl font-semibold pl-4 text-neutral-700 block">
+    <h2 className="text-3xl font-semibold pl-4 text-neutral-600 block">
       {children}
     </h2>
   );

@@ -19,7 +19,7 @@ const NavbarItem: FC<Props> = ({
   className,
 }) => {
   const baseClasses =
-    "bg-white/100 text-neutral-500 cursor-pointer rounded-md hover:bg-gray-100 hover:shadow-inner";
+    "text-neutral-500 cursor-pointer rounded-md hover:bg-gray-100 hover:shadow-inner";
   const activeClasses =
     "bg-black text-white cursor-pointer rounded-md grow md:grow-0";
 

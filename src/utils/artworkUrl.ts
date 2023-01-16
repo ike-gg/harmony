@@ -1,8 +1,11 @@
-type Size = "small" | "medium" | "large";
+type Size = "xsmall" | "small" | "medium" | "large";
 
 const getArtworkUrl = (artworkUrl: string, size: Size) => {
   let pxSize;
   switch (size) {
+    case "xsmall":
+      pxSize = "100";
+      break;
     case "small":
       pxSize = "250";
       break;
