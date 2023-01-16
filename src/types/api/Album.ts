@@ -1,4 +1,9 @@
-import { Artwork, EditorialNotes } from "./Common";
+import {
+  Artwork,
+  EditorialNotes,
+  RelationshipTracksMusicVideo,
+  RelationshipTracksSong,
+} from "./Common";
 
 export interface Album {
   data: {
@@ -38,47 +43,5 @@ interface AlbumRelationshipArtists {
 }
 
 interface AlbumRelationshipTracks {
-  data: (AlbumRelationshipTracksSong | AlbumRelationshipTracksMusicVideo)[];
-}
-
-interface AlbumRelationshipTracksSong {
-  id: string;
-  type: "songs";
-  attributes: {
-    albumName: string;
-    genreNames: string[];
-    trackNumber: number;
-    releaseDate: string;
-    durationInMillis: number;
-    artwork: Artwork;
-    composerName: string;
-    url: string;
-    discNumber: number;
-    name: string;
-    previews: {
-      url: string;
-    }[];
-    artistName: string;
-  };
-}
-
-interface AlbumRelationshipTracksMusicVideo {
-  id: string;
-  type: "music-videos";
-  attributes: {
-    albumName: string;
-    genreNames: string[];
-    trackNumber: number;
-    releaseDate: string;
-    durationInMillis: number;
-    artwork: Artwork;
-    url: string;
-    name: string;
-    previews: {
-      url: string;
-      hlsUrl?: string;
-      artwork: Artwork;
-    };
-    artistName: string;
-  };
+  data: (RelationshipTracksSong | RelationshipTracksMusicVideo)[];
 }

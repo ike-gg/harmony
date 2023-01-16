@@ -56,9 +56,9 @@ const useAppleMusic = <T>(
       dispatch({ type: "FINISHED", payload: response as T });
 
       //debug purposes
-      setTimeout(() => {
-        dispatch({ type: "FINISHED", payload: response as T });
-      }, 60000);
+      // setTimeout(() => {
+      //   dispatch({ type: "FINISHED", payload: response as T });
+      // }, 60000);
     } catch (error) {
       dispatch({ type: "ERROR", payload: String(error) });
     }

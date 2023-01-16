@@ -21,7 +21,7 @@ const PopularSongs = () => {
   let content: JSX.Element | JSX.Element[] | undefined;
 
   if (!songsInfo && isLoading) {
-    content = [...Array(8)].map(() => (
+    content = [...Array(8 * 2)].map(() => (
       <SongItem type="notloaded" key={randomKey()} />
     ));
   }

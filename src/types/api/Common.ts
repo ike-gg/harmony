@@ -15,3 +15,45 @@ export interface EditorialNotes {
   name?: string;
   tagline?: string;
 }
+
+export interface RelationshipTracksSong {
+  id: string;
+  type: "songs";
+  attributes: {
+    albumName: string;
+    genreNames: string[];
+    trackNumber: number;
+    releaseDate: string;
+    durationInMillis: number;
+    artwork: Artwork;
+    composerName: string;
+    url: string;
+    discNumber: number;
+    name: string;
+    previews: {
+      url: string;
+    }[];
+    artistName: string;
+  };
+}
+
+export interface RelationshipTracksMusicVideo {
+  id: string;
+  type: "music-videos";
+  attributes: {
+    albumName: string;
+    genreNames: string[];
+    trackNumber: number;
+    releaseDate: string;
+    durationInMillis: number;
+    artwork: Artwork;
+    url: string;
+    name: string;
+    previews: {
+      url: string;
+      hlsUrl?: string;
+      artwork: Artwork;
+    };
+    artistName: string;
+  };
+}

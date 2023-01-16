@@ -1,9 +1,9 @@
 import { FC } from "react";
-import getArtworkUrl from "../../utils/artworkUrl";
+import getArtworkUrl, { Size } from "../../utils/getArtworkUrl";
 
 interface Props {
   artworkUrl: string;
-  size: "xsmall" | "small" | "medium" | "large";
+  size: Size;
 }
 
 const Artwork: FC<Props> = ({ artworkUrl, size = "medium" }) => {

@@ -1,9 +1,12 @@
-type Size = "xsmall" | "small" | "medium" | "large";
+export type Size = "icon" | "extrasmall" | "small" | "medium" | "large";
 
 const getArtworkUrl = (artworkUrl: string, size: Size) => {
   let pxSize;
   switch (size) {
-    case "xsmall":
+    case "icon":
+      pxSize = "50";
+      break;
+    case "extrasmall":
       pxSize = "100";
       break;
     case "small":
