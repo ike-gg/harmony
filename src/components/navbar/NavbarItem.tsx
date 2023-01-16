@@ -31,7 +31,7 @@ const NavbarItem: FC<Props> = ({
         (isActive ? activeClasses : baseClasses) + " " + className
       }
     >
-      <div className="flex flex-row justify-center items-center flex-nowrap h-12 p-3 gap-2">
+      <div className="flex flex-row justify-center items-center flex-nowrap h-10 p-4 gap-2">
         <Icon className="text-xl" iconName={iconName} />
         <span className="capitalize translate-y-[0.5px]">{name}</span>
       </div>

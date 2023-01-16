@@ -7,17 +7,6 @@ import Paragraph from "../components/UI/Paragraph";
 import PopularAlbums from "../components/music/albums/PopularAlbums";
 
 const Home = () => {
-  // const [albums, setAlbums] = useState<PopularAlbums | null>(null);
-
-  // useEffect(() => {
-  //   fetch("https://harmony-backend.vercel.app/api/popularAlbums")
-  //     .then((data) => data.json())
-  //     .then((data: PopularAlbums) => {
-  //       console.log("gotdata!");
-  //       setAlbums(data);
-  //     });
-  // }, []);
-
   return (
     <>
       <section className="flex flex-col gap-2">
@@ -29,44 +18,6 @@ const Home = () => {
         </Paragraph>
       </section>
       <PopularAlbums />
-      {/* <section className="flex flex-col gap-4">
-        <SubHeading>Popular Albums</SubHeading>
-        <HorizontalWrapper>
-          {albums?.results.albums[0].data.map((album) => {
-            const { artwork, name, artistName } = album.attributes;
-            const { url } = artwork;
-            const redirectTo = `${album.type}/${album.id}`;
-            return (
-              <MusicCardItem
-                to={redirectTo}
-                key={album.id}
-                artwork={url}
-                author={artistName}
-                name={name}
-              />
-            );
-          })}
-        </HorizontalWrapper>
-      </section>
-      <section className="flex flex-col gap-4">
-        <SubHeading>Popular Albums</SubHeading>
-        <HorizontalWrapper>
-          {albums?.results.albums[0].data.map((album) => {
-            const { artwork, name, artistName } = album.attributes;
-            const { url } = artwork;
-            const redirectTo = `${album.type}/${album.id}`;
-            return (
-              <MusicCardItem
-                to={redirectTo}
-                key={album.id}
-                artwork={url}
-                author={artistName}
-                name={name}
-              />
-            );
-          })}
-        </HorizontalWrapper>
-      </section> */}
     </>
   );
 };

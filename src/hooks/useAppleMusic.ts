@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useReducer } from "react";
-import getPopularAlbums from "../lib/getPopularAlbums";
+import { useCallback, useReducer } from "react";
 
 interface State {
   data?: any;
@@ -7,10 +6,12 @@ interface State {
   isLoading: boolean;
 }
 
-const initialState: State = {
-  data: undefined,
-  error: undefined,
-  isLoading: false,
+const getInitialState = (startedWithLoading: boolean): State => {
+  return {
+    isLoading: startedWithLoading,
+    data: undefined,
+    error: undefined,
+  };
 };
 
 type Action =
@@ -33,6 +34,12 @@ const reducer = (state: State, action: Action): State => {
       error: undefined,
     };
   }
+  if (action.type === "STARTLOADING") {
+    return {
+      ...state,
+      isLoading: true,
+    };
+  }
   return state;
 };
 
@@ -40,17 +47,18 @@ const useAppleMusic = <T>(
   apiCall: (params?: Record<string, string>) => Promise<T>,
   startLoading: boolean = false
 ) => {
-  const [music, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
-    dispatch({ type: "STARTLOADING" });
-  }, [startLoading]);
+  const [music, dispatch] = useReducer(reducer, getInitialState(startLoading));
 
   const sendRequest = useCallback(async (params?: Record<string, string>) => {
     try {
       dispatch({ type: "STARTLOADING" });
       const response = await apiCall(params);
-      dispatch({ type: "FINISHED", payload: response });
+      dispatch({ type: "FINISHED", payload: response as T });
+
+      //debug purposes
+      // setTimeout(() => {
+      //   dispatch({ type: "FINISHED", payload: response as T });
+      // }, 60000);
     } catch (error) {
       dispatch({ type: "ERROR", payload: String(error) });
     }

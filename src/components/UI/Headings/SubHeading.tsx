@@ -1,12 +1,20 @@
-import { FC } from "react";
+import Skeleton from "@yisheng90/react-loading";
+import { FC, ReactNode } from "react";
 
 interface Props {
-  children: string;
+  children: ReactNode;
+  isLoading: boolean;
 }
 
-const SubHeading: FC<Props> = ({ children }) => {
+const SubHeading: FC<Props> = ({ children, isLoading }) => {
+  if (isLoading) {
+    return <Skeleton height="1.875rem" width="100%" />;
+  }
+
   return (
-    <h2 className="text-3xl font-semibold pl-4 text-neutral-700">{children}</h2>
+    <h2 className="text-3xl font-semibold pl-4 text-neutral-700 block">
+      {children}
+    </h2>
   );
 };
 

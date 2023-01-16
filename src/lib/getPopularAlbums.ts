@@ -11,6 +11,7 @@ const getPopularAlbums = async () => {
 
   const data = (await response.json()) as PopularAlbums;
 
+  // data.results.albums[0].data.splice(4);
   return data;
 };
 
