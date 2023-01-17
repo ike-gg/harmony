@@ -42,7 +42,9 @@ const PopularAlbums = () => {
 
   return (
     <section className="flex flex-col gap-4">
-      <SubHeading isLoading={isLoading}>Popular Albums</SubHeading>
+      <SubHeading isLoading={isLoading}>
+        {albumsInfo?.results.albums[0].name}
+      </SubHeading>
       <HorizontalWrapper rows={1}>{content}</HorizontalWrapper>
     </section>
   );

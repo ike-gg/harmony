@@ -17,7 +17,7 @@ interface SkeletonProps {
 const AlbumItem: FC<Props | SkeletonProps> = (props) => {
   if (props.type === "notloaded") {
     return (
-      <div className="flex flex-col gap-1 w-44 snap-center">
+      <div className="flex flex-col gap-1 w-44 snap-start">
         <Skeleton width="11rem" height="11rem" />
         <Skeleton width="100%" height="1.2rem" />
         <Skeleton width="100%" height="0.5rem" />
@@ -33,7 +33,7 @@ const AlbumItem: FC<Props | SkeletonProps> = (props) => {
 
   return (
     <div>
-      <Link to={detailsPage} className="flex flex-col w-44 snap-center">
+      <Link to={detailsPage} className="flex flex-col w-44 snap-start">
         <Artwork artworkUrl={artworkUrl} size="small" />
         <h3 className="mt-1 pl-1 font-medium text-neutral-700 text-base text-ellipsis whitespace-nowrap overflow-hidden">
           {name}
