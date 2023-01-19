@@ -3,6 +3,7 @@ import { SongAttributes } from "../types/api/Song";
 
 interface PlayerState {
   song?: SongAttributes;
+  id?: string;
   isPlaying: boolean;
   timestamp: number;
 }
@@ -12,12 +13,17 @@ const initialState: PlayerState = {
   timestamp: 0,
 };
 
+interface SongAttributesID extends SongAttributes {
+  id: string;
+}
+
 export const playerSlice = createSlice({
   name: "player",
   initialState,
   reducers: {
-    changeSong(state, action: PayloadAction<SongAttributes>) {
+    changeSong(state, action: PayloadAction<SongAttributesID>) {
       state.song = action.payload;
+      state.id = action.payload.id;
       state.isPlaying = true;
     },
     removeSong(state) {

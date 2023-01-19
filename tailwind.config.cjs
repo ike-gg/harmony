@@ -14,6 +14,9 @@ module.exports = {
         primary: "#6f2dbd",
         shadow: "#00000010",
       },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
     },
     fontFamily: {
       sans: ['"Inter"', "sans-serif"],

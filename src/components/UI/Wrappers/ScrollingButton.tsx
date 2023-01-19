@@ -13,7 +13,7 @@ const SrollingButton: FC<Props> = ({ direction, container }) => {
   if (direction === "right") directionValue = 1;
 
   const handleHorizontalScroll = () => {
-    if (!container) throw new Error("horizontalWrapper not found");
+    if (!container) return;
 
     const parentWidth = container.offsetWidth;
     const currentPosition = container.scrollLeft;

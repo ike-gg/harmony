@@ -8,21 +8,20 @@ interface Props {
   children: ReactNode;
 }
 
-const HorizontalWrapper: FC<Props> = ({ children, rows }) => {
+const HorizontalWrapper: FC<Props> = ({ children, rows = 1 }) => {
   const horizontalWrapper = useRef<HTMLDivElement>(null);
 
-  let rowClass;
-  if (rows === 1) rowClass = "grid-rows-1";
-  if (rows === 2) rowClass = "grid-rows-2";
-  if (rows === 3) rowClass = "grid-rows-3";
-  if (!rows) rowClass = "grid-rows-1";
-
-  const classes =
-    `grid grid-flow-col-dense justify-start overflow-x-scroll gap-3 gap-y-5 pb-4 snap-mandatory snap-x ` +
-    rowClass;
+  const classes = classNames(
+    `grid grid-flow-col-dense justify-start overflow-x-scroll gap-3 pb-4 snap-mandatory snap-x`,
+    {
+      "grid-rows-1": rows === 1,
+      "grid-rows-2": rows === 2,
+      "grid-rows-3": rows === 3,
+    }
+  );
 
   return (
-    <section className="relative flex items-center">
+    <section className="relative flex items-center overflow-hidden">
       <SrollingButton container={horizontalWrapper.current} direction="left" />
       <div ref={horizontalWrapper} className={classes}>
         {children}

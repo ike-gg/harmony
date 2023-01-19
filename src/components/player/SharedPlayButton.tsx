@@ -6,13 +6,14 @@ import Icon from "../UI/Icon";
 
 interface Props {
   song: SongAttributes;
+  id: string;
 }
 
-const SharedPlayButton: FC<Props> = ({ song }) => {
+const SharedPlayButton: FC<Props> = ({ song, id }) => {
   const dispatch = useDispatch();
   const handlePlay = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    dispatch(PlayerActions.changeSong(song));
+    dispatch(PlayerActions.changeSong({ ...song, id }));
   };
 
   return (

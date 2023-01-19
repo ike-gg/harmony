@@ -42,7 +42,9 @@ const PopularSongs = () => {
 
   return (
     <section className="flex flex-col gap-4">
-      <SubHeading isLoading={isLoading}>Popular Songs</SubHeading>
+      <SubHeading isLoading={isLoading}>
+        {songsInfo?.results.songs[0].name}
+      </SubHeading>
       <HorizontalWrapper rows={2}>{content}</HorizontalWrapper>
     </section>
   );

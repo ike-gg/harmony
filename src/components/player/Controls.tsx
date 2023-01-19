@@ -9,7 +9,7 @@ interface Props {
 
 const Timestamp: FC<{ children?: string }> = ({ children }) => {
   if (!children) return null;
-  return <p className="text-sm text-neutral-500">{children}</p>;
+  return <p className="text-sm opacity-70">{children}</p>;
 };
 
 const Controls: FC<Props> = ({ currentTime, duration }) => {
