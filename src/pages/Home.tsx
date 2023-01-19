@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import HorizontalWrapper from "../components/music/HorizontalWrapper";
+import HorizontalWrapper from "../components/UI/Wrappers/HorizontalWrapper";
 import MainHeading from "../components/UI/Headings/MainHeading";
 import SubHeading from "../components/UI/Headings/SubHeading";
 import MusicCardItem from "../components/music/albums/AlbumItem";

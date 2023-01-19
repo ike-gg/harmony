@@ -1,17 +1,10 @@
-import {
-  ChangeEvent,
-  ReactEventHandler,
-  SyntheticEvent,
-  useRef,
-  useState,
-} from "react";
+import { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import Artwork from "../music/Artwork";
 import VolumeSlider from "./VolumeSlider";
 import { isIOS } from "react-device-detect";
 import Controls from "./Controls";
-import { current } from "@reduxjs/toolkit";
 import Icon from "../UI/Icon";
 
 const PlayerBar = () => {
@@ -34,8 +27,21 @@ const PlayerBar = () => {
     setTime(currentStamp);
   };
 
+  const { artwork } = player.song;
+
+  const backgroundColor = artwork.bgColor;
+  const textColor = artwork.textColor1;
+
   return (
-    <div className="sticky bottom-0 gap-3 flex border border-neutral-200/75 shadow-personal shadow-shadow items-center p-4 md:p-3 md:pr-8 bg-white/90 backdrop-blur-md rounded-t-lg overflow-x-auto z-50">
+    <div
+      style={{
+        backgroundColor: `#${backgroundColor}DF`,
+        color: `#${textColor}`,
+        border: `2px solid #${backgroundColor}50`,
+        boxShadow: `0 0 30px #${backgroundColor}`,
+      }}
+      className={`sticky bottom-0 gap-3 flex shadow-personal shadow-shadow items-center p-4 md:p-3 md:pr-8  backdrop-blur-md rounded-t-lg overflow-x-auto z-50`}
+    >
       <Artwork artworkUrl={player.song.artwork.url} size="icon" />
       <div>
         <h2 className="text-base font-semibold">{player.song.name}</h2>

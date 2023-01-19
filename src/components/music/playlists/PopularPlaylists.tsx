@@ -4,7 +4,7 @@ import getPopularAlbums from "../../../lib/getPopularAlbums";
 import getPopularPlaylists from "../../../lib/getPopularPlaylists";
 import randomKey from "../../../utils/randomKey";
 import SubHeading from "../../UI/Headings/SubHeading";
-import HorizontalWrapper from "../HorizontalWrapper";
+import HorizontalWrapper from "../../UI/Wrappers/HorizontalWrapper";
 import PlaylistItem from "./PlaylistItem";
 
 const PopularPlaylists = () => {

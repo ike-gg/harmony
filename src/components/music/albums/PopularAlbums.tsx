@@ -3,7 +3,7 @@ import useAppleMusic from "../../../hooks/useAppleMusic";
 import getPopularAlbums from "../../../lib/getPopularAlbums";
 import randomKey from "../../../utils/randomKey";
 import SubHeading from "../../UI/Headings/SubHeading";
-import HorizontalWrapper from "../HorizontalWrapper";
+import HorizontalWrapper from "../../UI/Wrappers/HorizontalWrapper";
 import AlbumItem from "./AlbumItem";
 
 const PopularAlbums = () => {

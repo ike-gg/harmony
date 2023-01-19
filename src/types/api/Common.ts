@@ -1,5 +1,5 @@
 export interface Artwork {
-  bgcolor?: string;
+  bgColor?: string;
   height: number;
   width: number;
   textColor1?: string;

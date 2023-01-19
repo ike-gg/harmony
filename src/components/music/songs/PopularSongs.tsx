@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import useAppleMusic from "../../../hooks/useAppleMusic";
 import randomKey from "../../../utils/randomKey";
 import SubHeading from "../../UI/Headings/SubHeading";
-import HorizontalWrapper from "../HorizontalWrapper";
+import HorizontalWrapper from "../../UI/Wrappers/HorizontalWrapper";
 import getPopularSongs from "../../../lib/getPopularSongs";
 import SongItem from "./SongItem";
 

@@ -6,3 +6,24 @@ body {
   background-color: #f8fafc;
   /* background-color: #000000; */
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 100px;
+  background: transparent;
+  border: 1px solid rgb(244, 244, 244);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background: rgb(200, 200, 200);
+  border: 1px solid rgb(220, 220, 220);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(34, 34, 34);
+}
