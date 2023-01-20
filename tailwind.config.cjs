@@ -17,6 +17,9 @@ module.exports = {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
+      transitionDuration: {
+        250: "250ms",
+      },
     },
     fontFamily: {
       sans: ['"Inter"', "sans-serif"],

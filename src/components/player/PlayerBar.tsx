@@ -1,4 +1,5 @@
-import { SyntheticEvent, useEffect, useRef, useState } from "react";
+import { SyntheticEvent, useRef, useState } from "react";
+import Marquee from "react-fast-marquee";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import Artwork from "../music/Artwork";
@@ -6,6 +7,7 @@ import VolumeSlider from "./VolumeSlider";
 import { isIOS } from "react-device-detect";
 import Controls from "./Controls";
 import Icon from "../UI/Icon";
+import PlayButton from "./PlayButton";
 
 const PlayerBar = () => {
   const audioSource = useRef<HTMLAudioElement>(null);
@@ -35,13 +37,13 @@ const PlayerBar = () => {
   return (
     <div
       style={{
-        backgroundColor: `#${backgroundColor}DD`,
+        transition: "0.5s",
+        backgroundColor: `#${backgroundColor}EE`,
         color: `#${textColor}`,
         border: `2px solid #${backgroundColor}DD`,
-        borderBottom: "none",
         boxShadow: `0 0 15px #${backgroundColor}BB`,
       }}
-      className={`sticky bottom-0 gap-3 flex items-center p-4 md:p-3 md:pr-8  backdrop-blur-md rounded-t-lg overflow-x-auto z-50`}
+      className={`sticky bottom-0 gap-4 flex items-center p-4 md:p-3 md:pr-8  backdrop-blur-md rounded-t-lg overflow-x-auto z-50`}
     >
       <audio
         ref={audioSource}
@@ -49,24 +51,24 @@ const PlayerBar = () => {
         src={player.song.previews[0].url}
         autoPlay
       />
-      <Artwork artworkUrl={player.song.artwork.url} size="icon" />
-      <div>
-        <h2 className="text-base font-semibold">{player.song.name}</h2>
-        <p className="text-xs opacity-60">{player.song.artistName}</p>
+      <div className="flex flex-row items-center gap-2 w-40">
+        <Artwork artworkUrl={player.song.artwork.url} size="icon" />
+        <Marquee className="flex flex-col" gradient={false}>
+          <div>
+            <h2 className="text-base font-semibold pr-4">{player.song.name}</h2>
+            <p className="text-xs opacity-60 pr-4">{player.song.artistName}</p>
+          </div>
+        </Marquee>
       </div>
-      <button
-        onClick={() => {
-          if (audioSource.current?.paused) {
-            audioSource.current.play();
-          } else {
-            audioSource.current?.pause();
-          }
-        }}
-      >
-        <Icon className="text-3xl" iconName={"play"} />
-      </button>
-      <Controls currentTime={time} duration={audioSource.current?.duration} />
-      {!isIOS && <VolumeSlider handleVolume={changeVolumeHandle} />}
+      <PlayButton audio={audioSource.current} />
+      <Controls
+        color={textColor}
+        currentTime={time}
+        duration={audioSource.current?.duration}
+      />
+      {!isIOS && (
+        <VolumeSlider color={textColor} handleVolume={changeVolumeHandle} />
+      )}
     </div>
   );
 };

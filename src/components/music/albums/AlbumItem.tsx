@@ -34,7 +34,7 @@ const AlbumItem: FC<Props | SkeletonProps> = (props) => {
   return (
     <div>
       <Link to={detailsPage} className="flex flex-col w-44 snap-start">
-        <Artwork artworkUrl={artworkUrl} size="small" blurredShadow />
+        <Artwork artworkUrl={artworkUrl} size="small" />
         <h3 className="mt-1 pl-1 font-medium text-neutral-700 text-base text-ellipsis whitespace-nowrap overflow-hidden">
           {name}
         </h3>

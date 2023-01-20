@@ -4,6 +4,7 @@ import Icon from "../UI/Icon";
 
 interface Props {
   handleVolume: (value: number) => void;
+  color?: string;
 }
 
 type VolumeLevels =
@@ -13,22 +14,10 @@ type VolumeLevels =
   | "volume-off"
   | "volume-mute";
 
-const VolumeSlider: FC<Props> = ({ handleVolume }) => {
+const VolumeSlider: FC<Props> = ({ handleVolume, color }) => {
   const [volume, setVolume] = useState<number>(0.5);
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [lastVolume, setLastVolume] = useState<number>(0);
-
-  // const handleVolumeChange = (value: number[]) => {
-  //   const [newVolume] = value;
-  //   setVolume(newVolume);
-  //   handleVolume(newVolume);
-  // };
-  const handleVolumeChange = (event: any) => {
-    console.log(event);
-    // const [newVolume] = value;
-    // setVolume(newVolume);
-    // handleVolume(newVolume);
-  };
 
   let icon: VolumeLevels = "volume";
 
@@ -38,31 +27,47 @@ const VolumeSlider: FC<Props> = ({ handleVolume }) => {
   else if (volume > 0) icon = "volume-down";
   else icon = "volume-off";
 
+  const handleVolumeChange = (value: number[]) => {
+    const [newVolume] = value;
+    setVolume(newVolume);
+    handleVolume(newVolume);
+  };
+
   const toggleMuteHandle = () => {
     setIsMuted((prev) => !prev);
-    setLastVolume(volume);
-    setVolume(0);
+    if (isMuted) {
+      handleVolumeChange([lastVolume]);
+    } else {
+      setLastVolume(volume);
+      handleVolumeChange([0]);
+    }
   };
 
   return (
     <div className="flex flex-row gap-4 w-36 items-center">
-      <Icon
-        iconName={icon}
-        onClick={toggleMuteHandle}
-        className="text-xl text-black/50"
-      />
+      <Icon iconName={icon} onClick={toggleMuteHandle} className="text-2xl" />
       <Root
         defaultValue={[1]}
         max={1}
         min={0}
         step={0.01}
-        onChange={handleVolumeChange}
+        value={[volume]}
+        onValueChange={handleVolumeChange}
         className="relative flex h-5 w-full touch-none items-center"
       >
-        <Track className="relative h-1.5 w-full grow rounded-full bg-neutral-200/75">
-          <Range className="absolute h-full rounded-full bg-black" />
+        <Track
+          style={{ backgroundColor: `#${color}50` }}
+          className="relative h-1.5 w-full grow rounded-full bg-neutral"
+        >
+          <Range
+            style={{ backgroundColor: `#${color}` }}
+            className="absolute h-full rounded-full"
+          />
         </Track>
-        <Thumb className="block bg-transparent hover:bg-black h-4 w-4 rounded-full  cursor-grab active:cursor-grabbing" />
+        <Thumb
+          style={{ backgroundColor: `#${color}` }}
+          className="block h-3 w-3 rounded-full cursor-grab active:cursor-grabbing"
+        />
       </Root>
     </div>
   );

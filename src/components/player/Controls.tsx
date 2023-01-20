@@ -5,6 +5,7 @@ import secondsToMinutesAndSeconds from "../../utils/secToMinSec";
 interface Props {
   currentTime?: number;
   duration?: number;
+  color?: string;
 }
 
 const Timestamp: FC<{ children?: string }> = ({ children }) => {
@@ -12,7 +13,7 @@ const Timestamp: FC<{ children?: string }> = ({ children }) => {
   return <p className="text-sm opacity-70">{children}</p>;
 };
 
-const Controls: FC<Props> = ({ currentTime, duration }) => {
+const Controls: FC<Props> = ({ currentTime, duration, color }) => {
   const currentTimestamp = secondsToMinutesAndSeconds(currentTime);
   const endTimestamp = secondsToMinutesAndSeconds(duration);
   let percentage = 0;
@@ -20,7 +21,7 @@ const Controls: FC<Props> = ({ currentTime, duration }) => {
     percentage = currentTime / duration;
   }
   return (
-    <div className="flex grow gap-2 items-center px-4">
+    <div className="flex grow gap-2 items-center">
       <Timestamp>{currentTimestamp}</Timestamp>
       <Root
         defaultValue={[0]}
@@ -30,8 +31,14 @@ const Controls: FC<Props> = ({ currentTime, duration }) => {
         value={[percentage]}
         className="relative flex h-5 w-full touch-none items-center"
       >
-        <Track className="relative h-1.5 w-full grow rounded-full bg-neutral-200/75">
-          <Range className="absolute h-full rounded-full bg-black" />
+        <Track
+          style={{ backgroundColor: `#${color}50` }}
+          className="relative h-1.5 w-full grow rounded-full"
+        >
+          <Range
+            style={{ backgroundColor: `#${color}` }}
+            className="absolute h-full rounded-full duration-250 ease-linear"
+          />
         </Track>
         {/* <Thumb className="block bg-transparent hover:bg-black h-4 w-4 rounded-full  cursor-grab active:cursor-grabbing" /> */}
       </Root>
