@@ -16,10 +16,12 @@ const Timestamp: FC<{ children?: string }> = ({ children }) => {
 const Controls: FC<Props> = ({ currentTime, duration, color }) => {
   const currentTimestamp = secondsToMinutesAndSeconds(currentTime);
   const endTimestamp = secondsToMinutesAndSeconds(duration);
+
   let percentage = 0;
   if (currentTime && duration) {
     percentage = currentTime / duration;
   }
+
   return (
     <div className="flex grow gap-2 items-center">
       <Timestamp>{currentTimestamp}</Timestamp>

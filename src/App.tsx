@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/Home";
 import Test from "./pages/Test";
+import AlbumView from "./pages/AlbumView";
+import Loading from "./components/UI/Loading";
 
 const router = createBrowserRouter([
   {
@@ -17,12 +23,21 @@ const router = createBrowserRouter([
       {
         path: "library",
         index: true,
-        element: "Library!",
+        element: "library",
       },
       {
         path: "search",
         index: true,
         element: "Search",
+      },
+      {
+        path: "album",
+        children: [
+          {
+            path: ":id",
+            element: <AlbumView />,
+          },
+        ],
       },
     ],
   },

@@ -19,10 +19,7 @@ const Artwork: FC<Props> = ({
   return (
     <span className="relative flex items-center">
       {blurredShadow && (
-        <img
-          className="absolute -z-50 scale-100 -translate-y-1/5 blur-sm"
-          src={url}
-        />
+        <img className="absolute -z-50 -translate-y-1/5 blur-lg" src={url} />
       )}
       <img
         className={`rounded-md shadow-lg aspect-square ${className}`}

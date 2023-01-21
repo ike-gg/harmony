@@ -1,6 +1,6 @@
 import { Artwork, RelationshipTracksSong } from "./Common";
 
-export interface Playlist {
+export interface PlaylistType {
   data: {
     id: string;
     type: "playlists";

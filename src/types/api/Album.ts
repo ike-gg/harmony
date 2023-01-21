@@ -5,7 +5,7 @@ import {
   RelationshipTracksSong,
 } from "./Common";
 
-export interface Album {
+export interface AlbumType {
   data: {
     id: string;
     type: "albums";
@@ -42,6 +42,6 @@ interface AlbumRelationshipArtists {
   }[];
 }
 
-interface AlbumRelationshipTracks {
+export interface AlbumRelationshipTracks {
   data: (RelationshipTracksSong | RelationshipTracksMusicVideo)[];
 }

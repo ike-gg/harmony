@@ -1,6 +1,6 @@
 import { Artwork, EditorialNotes } from "./Common";
 
-export interface Song {
+export interface SongType {
   data: {
     id: string;
     type: "songs";

@@ -9,19 +9,16 @@ const PlayButton: FC<Props> = ({ audio }) => {
   const [icon, setIcon] = useState<"play" | "pause">("pause");
 
   useEffect(() => {
-    if (audio?.paused) {
-      setIcon("play");
-    }
+    if (!audio) return;
+    audio.paused ? setIcon("play") : setIcon("pause");
   }, [audio?.paused]);
 
   const toggleSwitch = () => {
     if (!audio) return;
     if (audio.paused) {
       audio.play();
-      setIcon("pause");
     } else {
       audio.pause();
-      setIcon("play");
     }
   };
 
