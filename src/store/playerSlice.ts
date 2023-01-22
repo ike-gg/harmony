@@ -5,11 +5,13 @@ interface PlayerState {
   song?: SongAttributes;
   id?: string;
   isPlaying: boolean;
+  isLoading: boolean;
   timestamp: number;
 }
 
 const initialState: PlayerState = {
   isPlaying: false,
+  isLoading: false,
   timestamp: 0,
 };
 
@@ -22,9 +24,15 @@ export const playerSlice = createSlice({
   initialState,
   reducers: {
     changeSong(state, action: PayloadAction<SongAttributesID>) {
+      state.isLoading = false;
       state.song = action.payload;
       state.id = action.payload.id;
       state.isPlaying = true;
+    },
+    loadingSong(state, action: PayloadAction<string>) {
+      state.id = action.payload;
+      state.isLoading = true;
+      state.isPlaying = false;
     },
     removeSong(state) {
       state.song = undefined;

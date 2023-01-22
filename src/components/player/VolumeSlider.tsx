@@ -44,7 +44,7 @@ const VolumeSlider: FC<Props> = ({ handleVolume, color }) => {
   };
 
   return (
-    <div className="flex flex-row gap-4 w-36 items-center">
+    <div className="hidden md:flex flex-row gap-4 w-36 items-center">
       <Icon iconName={icon} onClick={toggleMuteHandle} className="text-2xl" />
       <Root
         defaultValue={[1]}

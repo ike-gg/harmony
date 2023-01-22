@@ -13,7 +13,7 @@ const Timestamp: FC<{ children?: string }> = ({ children }) => {
   return <p className="text-sm opacity-70">{children}</p>;
 };
 
-const Controls: FC<Props> = ({ currentTime, duration, color }) => {
+const ProgressBar: FC<Props> = ({ currentTime, duration, color }) => {
   const currentTimestamp = secondsToMinutesAndSeconds(currentTime);
   const endTimestamp = secondsToMinutesAndSeconds(duration);
 
@@ -49,4 +49,4 @@ const Controls: FC<Props> = ({ currentTime, duration, color }) => {
   );
 };
 
-export default Controls;
+export default ProgressBar;

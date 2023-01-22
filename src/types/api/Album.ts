@@ -35,7 +35,7 @@ interface AlbumRelationships {
   artists?: AlbumRelationshipArtists;
 }
 
-interface AlbumRelationshipArtists {
+export interface AlbumRelationshipArtists {
   data: {
     id: string;
     type: "artists";

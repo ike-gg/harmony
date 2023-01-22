@@ -17,7 +17,7 @@ const SrollingButton: FC<Props> = ({ direction, container }) => {
 
     const parentWidth = container.offsetWidth;
     const currentPosition = container.scrollLeft;
-    const newPosition = currentPosition + parentWidth * directionValue;
+    const newPosition = currentPosition + (parentWidth - 200) * directionValue;
     container.scroll({
       left: newPosition,
       behavior: "smooth",

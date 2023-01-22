@@ -23,7 +23,10 @@ const PlayButton: FC<Props> = ({ audio }) => {
   };
 
   return (
-    <button onClick={toggleSwitch}>
+    <button
+      className="order-last md:order-none w-10 h-10 rounded-full"
+      onClick={toggleSwitch}
+    >
       <Icon className="text-2xl" iconName={icon} />
     </button>
   );

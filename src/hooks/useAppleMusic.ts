@@ -54,13 +54,10 @@ const useAppleMusic = <T>(
       dispatch({ type: "STARTLOADING" });
       const response = await apiCall(params);
       dispatch({ type: "FINISHED", payload: response as T });
-
-      //debug purposes
-      // setTimeout(() => {
-      //   dispatch({ type: "FINISHED", payload: response as T });
-      // }, 60000);
+      return response as T;
     } catch (error) {
       dispatch({ type: "ERROR", payload: String(error) });
+      throw new Error(String(error));
     }
   }, []);
 

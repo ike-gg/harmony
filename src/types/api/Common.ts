@@ -53,7 +53,7 @@ export interface RelationshipTracksMusicVideo {
       url: string;
       hlsUrl?: string;
       artwork: Artwork;
-    };
+    }[];
     artistName: string;
   };
 }
