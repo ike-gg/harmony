@@ -4,6 +4,7 @@ import getReleaseDate from "../../../utils/getReleaseDate";
 import Hyperlink from "../../UI/Hyperlink";
 import Paragraph from "../../UI/Paragraph";
 import Artwork from "../Artwork";
+import AlbumArtists from "./AlbumArtists";
 import AlbumTracks from "./AlbumTracks";
 
 interface Props {
@@ -44,11 +45,12 @@ const Album: FC<Props> = ({ albumData }) => {
         </div>
       </main>
       <AlbumTracks tracks={tracks} />
-      <div>
-        <p className="text-neutral-400">Release date: {releaseDate}</p>
-        <p className="text-neutral-400">{copyright}</p>
-        <p className="text-neutral-400">{recordLabel}</p>
+      <div className="text-neutral-400 text-sm">
+        <p>Release date: {releaseDate}</p>
+        <p>{copyright}</p>
+        <p>{recordLabel}</p>
       </div>
+      <AlbumArtists artists={artists} />
     </article>
   );
 };

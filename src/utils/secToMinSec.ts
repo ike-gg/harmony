@@ -1,3 +1,4 @@
+//seconds to minutes : seconds format
 const secToMinSec = (time?: number) => {
   if (!time) return;
   const minutes = Math.floor(time / 60);
