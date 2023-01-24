@@ -14,11 +14,13 @@ interface Props {
 const AlbumTracks: FC<Props> = ({ tracks }) => {
   if (!tracks) return null;
 
+  const dispatch = useDispatch();
+  const { sendRequest } = useAppleMusic(getSong);
   const player = useSelector((state: RootState) => state.player);
 
-  const dispatch = useDispatch();
-
-  const { sendRequest } = useAppleMusic(getSong);
+  const tracksData = tracks.data.filter(
+    (track) => track.type !== "music-videos"
+  );
 
   const playMusic = async (songId: string) => {
     dispatch(PlayerActions.loadingSong(songId));
@@ -27,30 +29,24 @@ const AlbumTracks: FC<Props> = ({ tracks }) => {
     dispatch(PlayerActions.changeSong({ ...songAttirbutes, id: songId }));
   };
 
-  const tracksData = tracks.data.filter(
-    (track) => track.type !== "music-videos"
-  );
-
   const content = tracksData.map((track) => {
     const { attributes, id } = track;
-    const { name, trackNumber } = attributes;
+    const { name, trackNumber, artwork } = attributes;
 
     const playTrack = playMusic.bind(null, id);
-
     const isUnreleased = attributes.previews.length === 0;
-
     const isCurrentlyPlaying = player.id === id;
 
-    const stylesIfPlaying: React.CSSProperties = {
-      background: `#${attributes.artwork.bgColor}`,
-      color: `#${attributes.artwork.textColor1}`,
+    const activeSong: React.CSSProperties = {
+      background: `#${artwork.bgColor}`,
+      color: `#${artwork.textColor1}`,
       borderRadius: "0.5rem",
       opacity: 1,
     };
 
     return (
       <li
-        style={isCurrentlyPlaying ? stylesIfPlaying : {}}
+        style={isCurrentlyPlaying ? activeSong : {}}
         key={id}
         onClick={isUnreleased ? undefined : playTrack}
         className={classNames(
@@ -64,7 +60,7 @@ const AlbumTracks: FC<Props> = ({ tracks }) => {
         <span className="inline-block w-10 text-center font-light opacity-50">
           {trackNumber}
         </span>
-        <span className="">{name}</span>
+        <span>{name}</span>
         {isUnreleased && (
           <span className="pl-3 text-neutral-400 font-light">Unreleased</span>
         )}

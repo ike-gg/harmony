@@ -11,7 +11,7 @@ export interface ArtistType {
 
 export interface ArtistAttributes {
   artwork: Artwork;
-  editorialNotes: EditorialNotes;
+  editorialNotes?: EditorialNotes;
   genreNames: string[];
   name: string;
   url: string;

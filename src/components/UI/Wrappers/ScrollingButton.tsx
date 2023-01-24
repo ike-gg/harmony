@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC } from "react";
+import { FC, useEffect, useLayoutEffect } from "react";
 import Icon from "../Icon";
 
 interface Props {
@@ -23,6 +23,13 @@ const SrollingButton: FC<Props> = ({ direction, container }) => {
       behavior: "smooth",
     });
   };
+
+  const contentSize = container?.clientWidth;
+  const wrapperSize = container?.parentElement?.clientWidth;
+
+  if (contentSize && wrapperSize && contentSize < wrapperSize) {
+    return null;
+  }
 
   return (
     <button

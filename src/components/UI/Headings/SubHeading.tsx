@@ -3,7 +3,7 @@ import { FC, ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
-  isLoading: boolean;
+  isLoading?: boolean;
 }
 
 const SubHeading: FC<Props> = ({ children, isLoading }) => {
@@ -12,7 +12,7 @@ const SubHeading: FC<Props> = ({ children, isLoading }) => {
   }
 
   return (
-    <h2 className="text-3xl font-semibold pl-4 text-neutral-600 block">
+    <h2 className="text-3xl font-semibold text-neutral-600 block">
       {children}
     </h2>
   );

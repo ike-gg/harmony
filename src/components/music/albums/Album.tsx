@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { AlbumType } from "../../../types/api/Album";
-import getReleaseDate from "../../../utils/getReleaseDate";
-import Hyperlink from "../../UI/Hyperlink";
-import Paragraph from "../../UI/Paragraph";
+import FooterWrapper from "../../UI/Wrappers/FooterWrapper";
 import Artwork from "../Artwork";
 import AlbumArtists from "./AlbumArtists";
+import AlbumDesc from "./AlbumDesc";
+import AlbumFooter from "./AlbumFooter";
 import AlbumTracks from "./AlbumTracks";
 
 interface Props {
@@ -12,45 +12,25 @@ interface Props {
 }
 
 const Album: FC<Props> = ({ albumData }) => {
-  const albumId = albumData.data[0].id;
   const album = albumData.data[0].attributes;
   const tracks = albumData.data[0].relationships.tracks;
   const artists = albumData.data[0].relationships.artists;
 
-  console.log(tracks);
-
-  const { artwork, name, artistName, genreNames, releaseDate } = album;
-  const { copyright, recordLabel } = album;
-  const { url, editorialNotes } = album;
-  const release = getReleaseDate(releaseDate);
-  const basicInfo = [...genreNames, release?.year].join(" • ");
+  const { url } = album.artwork;
 
   return (
-    <article className="flex flex-col gap-6">
+    <article className="flex flex-col gap-8">
       <main className="flex flex-col gap-3 items-center md:items-start md:flex-row md:gap-6">
         <div className="w-3/5 md:w-3/12">
-          <Artwork artworkUrl={artwork.url} size="large" blurredShadow />
+          <Artwork artworkUrl={url} size="large" blurredShadow />
         </div>
-        <div className="flex flex-col gap-4 text-center md:text-left md:pt-6">
-          <div>
-            <h1 className="text-2xl font-semibold mb-1 line-clamp-1">{name}</h1>
-            <h2 className="text-base text-neutral-500">{artistName}</h2>
-            <h3 className="text-sm text-neutral-400">{basicInfo}</h3>
-          </div>
-          <div className="mt-auto">
-            <Hyperlink href={url} target={"_blank"} icon="external-link-alt">
-              Listen on Apple Music
-            </Hyperlink>
-          </div>
-        </div>
+        <AlbumDesc attributes={album} />
       </main>
       <AlbumTracks tracks={tracks} />
-      <div className="text-neutral-400 text-sm">
-        <p>Release date: {releaseDate}</p>
-        <p>{copyright}</p>
-        <p>{recordLabel}</p>
-      </div>
-      <AlbumArtists artists={artists} />
+      <AlbumFooter attributes={album} />
+      <FooterWrapper>
+        <AlbumArtists artists={artists} />
+      </FooterWrapper>
     </article>
   );
 };

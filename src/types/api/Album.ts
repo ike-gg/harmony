@@ -1,3 +1,4 @@
+import { ArtistAttributes } from "./Artist";
 import {
   Artwork,
   EditorialNotes,
@@ -39,6 +40,7 @@ export interface AlbumRelationshipArtists {
   data: {
     id: string;
     type: "artists";
+    attributes: ArtistAttributes;
   }[];
 }
 

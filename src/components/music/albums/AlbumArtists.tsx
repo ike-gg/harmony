@@ -1,6 +1,8 @@
 import { FC } from "react";
 import { AlbumRelationshipArtists } from "../../../types/api/Album";
+import SubHeading from "../../UI/Headings/SubHeading";
 import HorizontalWrapper from "../../UI/Wrappers/HorizontalWrapper";
+import ArtistItem from "../artists/ArtistItem";
 
 interface Props {
   artists?: AlbumRelationshipArtists;
@@ -11,14 +13,22 @@ const AlbumArtists: FC<Props> = ({ artists }) => {
 
   const { data: artistsData } = artists;
 
-  console.log(artists);
-
-  const content = artistsData.map((track) => {
-    const {} = track;
-    return <h1>{track.id}</h1>;
+  const content = artistsData.map((artist) => {
+    return (
+      <ArtistItem
+        attributes={artist.attributes}
+        id={artist.id}
+        key={artist.id}
+      />
+    );
   });
 
-  return <HorizontalWrapper rows={1}>{content}</HorizontalWrapper>;
+  return (
+    <article className="flex flex-col gap-4">
+      <SubHeading>Related artists</SubHeading>
+      <HorizontalWrapper rows={1}>{content}</HorizontalWrapper>
+    </article>
+  );
 };
 
 export default AlbumArtists;
