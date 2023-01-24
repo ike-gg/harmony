@@ -20,7 +20,7 @@ const Album: FC<Props> = ({ albumData }) => {
 
   return (
     <article className="flex flex-col gap-8">
-      <main className="flex flex-col gap-3 items-center md:items-start md:flex-row md:gap-6">
+      <main className="flex flex-col gap-3 items-center md:items-stretch md:flex-row md:gap-6">
         <div className="w-3/5 md:w-3/12">
           <Artwork artworkUrl={url} size="large" blurredShadow />
         </div>

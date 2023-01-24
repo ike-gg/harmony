@@ -20,10 +20,9 @@ interface SkeletonProps {
 
 const SongItem: FC<Props | SkeletonProps> = (props) => {
   const player = useSelector((state: RootState) => state.player);
-
   if (props.type === "notloaded") {
     return (
-      <div className="flex flex-row gap-1 w-52 snap-start">
+      <div className="flex flex-row gap-5 w-56 snap-start">
         <Skeleton width="6rem" height="6rem" />
         <div className="flex flex-col pt-1 w-24">
           <Skeleton width="100%" height="1.2rem" rows={2} />

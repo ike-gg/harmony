@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Test from "./pages/Test";
 import AlbumView from "./pages/AlbumView";
 import Loading from "./components/UI/Loading";
+import ArtistView from "./pages/ArtistView";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,15 @@ const router = createBrowserRouter([
           {
             path: ":id",
             element: <AlbumView />,
+          },
+        ],
+      },
+      {
+        path: "artist",
+        children: [
+          {
+            path: ":id",
+            element: <ArtistView />,
           },
         ],
       },

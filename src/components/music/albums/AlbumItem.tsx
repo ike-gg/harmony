@@ -29,7 +29,7 @@ const AlbumItem: FC<Props | SkeletonProps> = (props) => {
   const { artwork, name, artistName } = attributes;
   const { url: artworkUrl } = artwork;
 
-  const detailsPage = `album/${id}`;
+  const detailsPage = `/album/${id}`;
 
   return (
     <div>

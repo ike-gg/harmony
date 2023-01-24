@@ -16,6 +16,9 @@ const AlbumDesc: FC<Props> = ({ attributes }) => {
   return (
     <div className="flex flex-col gap-4 text-center md:text-left md:pt-6">
       <div>
+        <span className="uppercase font-semibold tracking-wider text-sm text-neutral-400">
+          album
+        </span>
         <h1 className="text-2xl font-semibold mb-1 line-clamp-1">{name}</h1>
         <h2 className="text-base text-neutral-500">{artistName}</h2>
         <h3 className="text-sm text-neutral-400">{basicInfo}</h3>
