@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { ArtistType } from "../../../types/api/Artist";
 import Artwork from "../Artwork";
-import ArtistAlbums from "./ArtistAlbums";
 import ArtistDesc from "./ArtistDesc";
-import ArtistPlaylists from "./ArtistPlaylists";
+import RelatedAlbums from "../albums/RelatedAlbums";
+import RelatedPlaylists from "../playlists/RelatedPlaylists";
+import RelatedMusicVideos from "../musicvideo/RelatedMusicVideo";
 
 interface Props {
   artistData: ArtistType;
@@ -12,8 +13,12 @@ interface Props {
 const Artist: FC<Props> = ({ artistData }) => {
   console.log(artistData);
   const artist = artistData.data[0].attributes;
-  const albums = artistData.data[0].relationships.albums;
-  const playlists = artistData.data[0].relationships.playlists;
+
+  const {
+    albums,
+    playlists,
+    "music-videos": musicVideos,
+  } = artistData.data[0].relationships;
 
   const { url } = artist.artwork;
 
@@ -28,8 +33,9 @@ const Artist: FC<Props> = ({ artistData }) => {
         </div>
         <ArtistDesc attributes={artist} />
       </main>
-      <ArtistAlbums albums={albums} />
-      <ArtistPlaylists playlists={playlists} />
+      <RelatedAlbums rows={2} albums={albums} />
+      <RelatedMusicVideos musicVideos={musicVideos} />
+      <RelatedPlaylists playlists={playlists} />
     </article>
   );
 };

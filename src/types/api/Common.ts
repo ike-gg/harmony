@@ -1,3 +1,9 @@
+import { AlbumAttributes } from "./Album";
+import { ArtistAttributes } from "./Artist";
+import { MusicVideoAttributes } from "./MusicVideo";
+import { PlaylistAttributes } from "./Playlist";
+import { SongAttributes } from "./Song";
+
 export interface Artwork {
   bgColor?: string;
   height: number;
@@ -16,44 +22,42 @@ export interface EditorialNotes {
   tagline?: string;
 }
 
-export interface RelationshipTracksSong {
-  id: string;
-  type: "songs";
-  attributes: {
-    albumName: string;
-    genreNames: string[];
-    trackNumber: number;
-    releaseDate: string;
-    durationInMillis: number;
-    artwork: Artwork;
-    composerName: string;
-    url: string;
-    discNumber: number;
-    name: string;
-    previews: {
-      url: string;
-    }[];
-    artistName: string;
-  };
+export interface AlbumsRelationship {
+  data: {
+    id: string;
+    type: "albums";
+    attributes: AlbumAttributes;
+  }[];
 }
 
-export interface RelationshipTracksMusicVideo {
-  id: string;
-  type: "music-videos";
-  attributes: {
-    albumName: string;
-    genreNames: string[];
-    trackNumber: number;
-    releaseDate: string;
-    durationInMillis: number;
-    artwork: Artwork;
-    url: string;
-    name: string;
-    previews: {
-      url: string;
-      hlsUrl?: string;
-      artwork: Artwork;
-    }[];
-    artistName: string;
-  };
+export interface SongsRelationship {
+  data: {
+    id: string;
+    type: "songs";
+    attributes: SongAttributes;
+  }[];
+}
+
+export interface ArtistsRelationship {
+  data: {
+    id: string;
+    type: "artists";
+    attributes: ArtistAttributes;
+  }[];
+}
+
+export interface MusicVideosRelationship {
+  data: {
+    id: string;
+    type: "music-videos";
+    attributes: MusicVideoAttributes;
+  }[];
+}
+
+export interface PlaylistsRelationship {
+  data: {
+    id: string;
+    type: "playlists";
+    attributes: PlaylistAttributes;
+  }[];
 }

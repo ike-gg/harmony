@@ -5,10 +5,11 @@ import useAppleMusic from "../../../hooks/useAppleMusic";
 import getSong from "../../../lib/getSong";
 import { PlayerActions } from "../../../store/playerSlice";
 import { RootState } from "../../../store/store";
-import { AlbumRelationshipTracks } from "../../../types/api/Album";
+import { AlbumRelationshipsTracks } from "../../../types/api/Album";
+import { SongsRelationship } from "../../../types/api/Common";
 
 interface Props {
-  tracks?: AlbumRelationshipTracks;
+  tracks?: AlbumRelationshipsTracks;
 }
 
 const AlbumTracks: FC<Props> = ({ tracks }) => {

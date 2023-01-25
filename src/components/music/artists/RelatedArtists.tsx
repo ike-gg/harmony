@@ -1,14 +1,14 @@
 import { FC } from "react";
-import { AlbumRelationshipArtists } from "../../../types/api/Album";
+import { ArtistsRelationship } from "../../../types/api/Common";
 import SubHeading from "../../UI/Headings/SubHeading";
 import HorizontalWrapper from "../../UI/Wrappers/HorizontalWrapper";
-import ArtistItem from "../artists/ArtistItem";
+import ArtistItem from "./ArtistItem";
 
 interface Props {
-  artists?: AlbumRelationshipArtists;
+  artists?: ArtistsRelationship;
 }
 
-const AlbumArtists: FC<Props> = ({ artists }) => {
+const RelatedArtists: FC<Props> = ({ artists }) => {
   if (!artists) return null;
 
   const { data: artistsData } = artists;
@@ -25,10 +25,10 @@ const AlbumArtists: FC<Props> = ({ artists }) => {
 
   return (
     <article className="flex flex-col gap-4">
-      <SubHeading>Related artists</SubHeading>
+      <SubHeading>Related Artists</SubHeading>
       <HorizontalWrapper rows={1}>{content}</HorizontalWrapper>
     </article>
   );
 };
 
-export default AlbumArtists;
+export default RelatedArtists;

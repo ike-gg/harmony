@@ -1,6 +1,10 @@
-import { AlbumAttributes } from "./Album";
-import { Artwork, EditorialNotes } from "./Common";
-import { PlaylistAttributes } from "./Playlist";
+import {
+  AlbumsRelationship,
+  Artwork,
+  EditorialNotes,
+  MusicVideosRelationship,
+  PlaylistsRelationship,
+} from "./Common";
 
 export interface ArtistType {
   data: {
@@ -20,29 +24,7 @@ export interface ArtistAttributes {
 }
 
 interface ArtistRelationships {
-  albums?: ArtistAlbumRelationship;
-  "music-videos"?: ArtistMusicVideosRelationship;
-  playlists?: ArtistPlaylistsRelationship;
-}
-
-export interface ArtistAlbumRelationship {
-  data: {
-    id: string;
-    type: "albums";
-    attributes: AlbumAttributes;
-  }[];
-}
-
-export interface ArtistMusicVideosRelationship {
-  data: {
-    id: string;
-  }[];
-}
-
-export interface ArtistPlaylistsRelationship {
-  data: {
-    id: string;
-    type: "playlists";
-    attributes: PlaylistAttributes;
-  }[];
+  albums?: AlbumsRelationship;
+  "music-videos"?: MusicVideosRelationship;
+  playlists?: PlaylistsRelationship;
 }

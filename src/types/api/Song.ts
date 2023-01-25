@@ -1,4 +1,11 @@
-import { Artwork, EditorialNotes } from "./Common";
+import {
+  AlbumsRelationship,
+  ArtistsRelationship,
+  Artwork,
+  EditorialNotes,
+  MusicVideosRelationship,
+} from "./Common";
+import { MusicVideoRelationships } from "./MusicVideo";
 
 export interface SongType {
   data: {
@@ -27,21 +34,8 @@ export interface SongAttributes {
   url: string;
 }
 
-interface SongRelationships {
-  albums?: SongRelationshipsAlbums;
-  artists?: SongRelationshipsArtists;
-}
-
-interface SongRelationshipsArtists {
-  data: {
-    id: string;
-    type: "artists";
-  }[];
-}
-
-interface SongRelationshipsAlbums {
-  data: {
-    id: string;
-    type: "albums";
-  }[];
+export interface SongRelationships {
+  albums?: AlbumsRelationship;
+  artists?: ArtistsRelationship;
+  "music-videos": MusicVideosRelationship;
 }

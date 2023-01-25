@@ -1,4 +1,4 @@
-import { Artwork, RelationshipTracksSong } from "./Common";
+import { Artwork, SongsRelationship } from "./Common";
 
 export interface PlaylistType {
   data: {
@@ -23,5 +23,5 @@ export interface PlaylistAttributes {
 }
 
 interface PlaylistRelationships {
-  tracks?: RelationshipTracksSong;
+  tracks: SongsRelationship;
 }

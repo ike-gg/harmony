@@ -7,6 +7,7 @@ import Paragraph from "../components/UI/Paragraph";
 import PopularAlbums from "../components/music/albums/PopularAlbums";
 import PopularSongs from "../components/music/songs/PopularSongs";
 import PopularPlaylists from "../components/music/playlists/PopularPlaylists";
+import PopularMusicVideos from "../components/music/musicvideo/PopularMusicVideos";
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
       </section>
       <PopularAlbums />
       <PopularSongs />
+      <PopularMusicVideos />
       <PopularPlaylists />
     </>
   );

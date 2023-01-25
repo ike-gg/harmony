@@ -2,10 +2,10 @@ import { FC } from "react";
 import { AlbumType } from "../../../types/api/Album";
 import FooterWrapper from "../../UI/Wrappers/FooterWrapper";
 import Artwork from "../Artwork";
-import AlbumArtists from "./AlbumArtists";
 import AlbumDesc from "./AlbumDesc";
 import AlbumFooter from "./AlbumFooter";
 import AlbumTracks from "./AlbumTracks";
+import RelatedArtists from "../artists/RelatedArtists";
 
 interface Props {
   albumData: AlbumType;
@@ -13,8 +13,7 @@ interface Props {
 
 const Album: FC<Props> = ({ albumData }) => {
   const album = albumData.data[0].attributes;
-  const tracks = albumData.data[0].relationships.tracks;
-  const artists = albumData.data[0].relationships.artists;
+  const { tracks, artists } = albumData.data[0].relationships;
 
   const { url } = album.artwork;
 
@@ -29,7 +28,7 @@ const Album: FC<Props> = ({ albumData }) => {
       <AlbumTracks tracks={tracks} />
       <AlbumFooter attributes={album} />
       <FooterWrapper>
-        <AlbumArtists artists={artists} />
+        <RelatedArtists artists={artists} />
       </FooterWrapper>
     </article>
   );
