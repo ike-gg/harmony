@@ -1,33 +1,17 @@
 import classNames from "classnames";
-import { FC, useEffect, useLayoutEffect } from "react";
+import { FC, MouseEventHandler, useEffect, useState } from "react";
 import Icon from "../Icon";
 
 interface Props {
   direction: "left" | "right";
   container: HTMLDivElement | null;
+  handleScroll: MouseEventHandler<HTMLButtonElement>;
 }
 
-const SrollingButton: FC<Props> = ({ direction, container }) => {
+const SrollingButton: FC<Props> = ({ direction, container, handleScroll }) => {
   let directionValue: number;
   if (direction === "left") directionValue = -1;
   if (direction === "right") directionValue = 1;
-
-  const handleHorizontalScroll = () => {
-    console.log("performing scroll");
-    if (!container) return;
-
-    const parentWidth = container.offsetWidth;
-    console.log("wrapper width:", parentWidth);
-    const currentPosition = container.scrollLeft;
-    console.log("current position:", parentWidth);
-    const newPosition = currentPosition + (parentWidth - 200) * directionValue;
-    console.log("new position:", newPosition);
-    container.scroll({
-      left: newPosition,
-      behavior: "smooth",
-    });
-    console.log("scrolling done");
-  };
 
   const contentSize = container?.clientWidth;
   const wrapperSize = container?.parentElement?.clientWidth;
@@ -43,7 +27,7 @@ const SrollingButton: FC<Props> = ({ direction, container }) => {
         "hover:text-white hover:bg-black hover:border-neutral-500 hover:cursor-pointer",
         { "right-2": direction === "right", "left-2": direction === "left" }
       )}
-      onClick={handleHorizontalScroll}
+      onClick={handleScroll}
     >
       <Icon iconName={direction === "right" ? "arrow-right" : "arrow-left"} />
     </button>

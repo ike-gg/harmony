@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC, MouseEvent, ReactNode, useRef } from "react";
+import { FC, MouseEvent, MouseEventHandler, ReactNode, useRef } from "react";
 import Icon from "../Icon";
 import SrollingButton from "./ScrollingButton";
 
@@ -20,13 +20,42 @@ const HorizontalWrapper: FC<Props> = ({ children, rows = 1 }) => {
     }
   );
 
+  const { current: container } = horizontalWrapper;
+
+  const handleHorizontalScroll = (
+    event: MouseEvent<HTMLButtonElement>,
+    direction: number
+  ) => {
+    if (!container) return;
+
+    const parentWidth = container.offsetWidth;
+    const currentPosition = container.scrollLeft;
+    const newPosition = currentPosition + (parentWidth - 200) * direction;
+    container.scroll({
+      left: newPosition,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section className="relative flex items-center overflow-hidden">
-      <SrollingButton container={horizontalWrapper.current} direction="left" />
+      <SrollingButton
+        handleScroll={(e) => {
+          handleHorizontalScroll(e, -1);
+        }}
+        container={horizontalWrapper.current}
+        direction="left"
+      />
       <div ref={horizontalWrapper} className={classes}>
         {children}
       </div>
-      <SrollingButton container={horizontalWrapper.current} direction="right" />
+      <SrollingButton
+        handleScroll={(e) => {
+          handleHorizontalScroll(e, 1);
+        }}
+        container={horizontalWrapper.current}
+        direction="right"
+      />
     </section>
   );
 };
