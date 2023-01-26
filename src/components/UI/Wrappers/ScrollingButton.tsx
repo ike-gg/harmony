@@ -13,15 +13,20 @@ const SrollingButton: FC<Props> = ({ direction, container }) => {
   if (direction === "right") directionValue = 1;
 
   const handleHorizontalScroll = () => {
+    console.log("performing scroll");
     if (!container) return;
 
     const parentWidth = container.offsetWidth;
+    console.log("wrapper width:", parentWidth);
     const currentPosition = container.scrollLeft;
+    console.log("current position:", parentWidth);
     const newPosition = currentPosition + (parentWidth - 200) * directionValue;
+    console.log("new position:", newPosition);
     container.scroll({
       left: newPosition,
       behavior: "smooth",
     });
+    console.log("scrolling done");
   };
 
   const contentSize = container?.clientWidth;
