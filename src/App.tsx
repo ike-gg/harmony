@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import Home from "./pages/Home";
 import AlbumView from "./pages/AlbumView";
@@ -8,7 +8,7 @@ import PlaylistView from "./pages/PlaylistView";
 import SongView from "./pages/SongView";
 import Error from "./components/UI/Error";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <RootLayout />,
