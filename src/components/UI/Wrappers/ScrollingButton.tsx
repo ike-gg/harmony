@@ -1,24 +1,41 @@
 import classNames from "classnames";
-import { FC, MouseEventHandler, useEffect, useState } from "react";
+import { FC, MouseEvent, MouseEventHandler, RefObject, useRef } from "react";
 import Icon from "../Icon";
 
 interface Props {
   direction: "left" | "right";
-  container: HTMLDivElement | null;
-  handleScroll: MouseEventHandler<HTMLButtonElement>;
+  container: RefObject<HTMLDivElement>;
 }
 
-const SrollingButton: FC<Props> = ({ direction, container, handleScroll }) => {
+const SrollingButton: FC<Props> = ({ direction, container }) => {
+  const wrapper = useRef(container);
+
+  console.log(wrapper);
+
   let directionValue: number;
   if (direction === "left") directionValue = -1;
   if (direction === "right") directionValue = 1;
 
-  const contentSize = container?.clientWidth;
-  const wrapperSize = container?.parentElement?.clientWidth;
+  const handleHorizontalScroll = (event: MouseEvent<HTMLButtonElement>) => {
+    const { current: container } = wrapper.current;
 
-  if (contentSize && wrapperSize && contentSize < wrapperSize) {
-    return null;
-  }
+    if (!container) return;
+
+    const parentWidth = container.offsetWidth;
+    const currentPosition = container.scrollLeft;
+    const newPosition = currentPosition + (parentWidth - 200) * directionValue;
+    container.scroll({
+      left: newPosition,
+      behavior: "smooth",
+    });
+  };
+
+  // const contentSize = containerElement?.clientWidth;
+  // const wrapperSize = containerElement?.parentElement?.clientWidth;
+
+  // if (contentSize && wrapperSize && contentSize < wrapperSize) {
+  //   return null;
+  // }
 
   return (
     <button
@@ -27,7 +44,7 @@ const SrollingButton: FC<Props> = ({ direction, container, handleScroll }) => {
         "hover:text-white hover:bg-black hover:border-neutral-500 hover:cursor-pointer",
         { "right-2": direction === "right", "left-2": direction === "left" }
       )}
-      onClick={handleScroll}
+      onClick={handleHorizontalScroll}
     >
       <Icon iconName={direction === "right" ? "arrow-right" : "arrow-left"} />
     </button>

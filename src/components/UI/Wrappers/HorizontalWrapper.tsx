@@ -19,44 +19,13 @@ const HorizontalWrapper: FC<Props> = ({ children, rows = 1 }) => {
     }
   );
 
-  const handleHorizontalScroll = useCallback(
-    (event: MouseEvent<HTMLButtonElement>, direction: number) => {
-      console.log(`container:`, horizontalWrapper);
-      if (!horizontalWrapper.current) return;
-
-      const { current: container } = horizontalWrapper;
-
-      const parentWidth = container.offsetWidth;
-      const currentPosition = container.scrollLeft;
-      const newPosition = currentPosition + (parentWidth - 200) * direction;
-      container.scroll({
-        left: newPosition,
-        behavior: "smooth",
-      });
-      console.log("performing scroll");
-    },
-    [children, horizontalWrapper]
-  );
-
   return (
     <section className="relative flex items-center overflow-hidden">
-      <SrollingButton
-        handleScroll={(e) => {
-          handleHorizontalScroll(e, -1);
-        }}
-        container={horizontalWrapper.current}
-        direction="left"
-      />
+      <SrollingButton container={horizontalWrapper} direction="left" />
       <div ref={horizontalWrapper} className={classes}>
         {children}
       </div>
-      <SrollingButton
-        handleScroll={(e) => {
-          handleHorizontalScroll(e, 1);
-        }}
-        container={horizontalWrapper.current}
-        direction="right"
-      />
+      <SrollingButton container={horizontalWrapper} direction="right" />
     </section>
   );
 };
