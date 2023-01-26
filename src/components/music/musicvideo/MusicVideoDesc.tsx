@@ -11,7 +11,7 @@ const MusicVideoDesc: FC<Props> = ({ attributes }) => {
 
   const genre = genreNames.join(", ");
   return (
-    <div className="flex flex-col-reverse gap-2 md:flex-row md:justify-between">
+    <div className="flex flex-col gap-2 md:flex-row md:justify-between">
       <div className="grow">
         <h2 className="text-base font-semibold opacity-80 line-clamp-1">
           {artistName}
@@ -23,7 +23,7 @@ const MusicVideoDesc: FC<Props> = ({ attributes }) => {
       </div>
       <div>
         <Hyperlink href={url} icon="external-link-alt">
-          Apple Music
+          Watch on Apple Music
         </Hyperlink>
       </div>
     </div>

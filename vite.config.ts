@@ -7,4 +7,7 @@ export default defineConfig({
   server: {
     host: true,
   },
+  build: {
+    minify: false,
+  },
 });
