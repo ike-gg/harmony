@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { FC } from "react";
 import getArtworkUrl, { Size } from "../../utils/getArtworkUrl";
 
@@ -5,6 +6,7 @@ interface Props {
   artworkUrl: string;
   size: Size;
   blurredShadow?: boolean;
+  isTrack?: boolean;
   className?: string;
 }
 
@@ -13,11 +15,16 @@ const Artwork: FC<Props> = ({
   size = "medium",
   blurredShadow,
   className,
+  isTrack,
 }) => {
   const url = getArtworkUrl(artworkUrl, size);
 
   return (
-    <span className="relative flex items-center">
+    <span
+      className={classNames("relative flex items-center", {
+        "min-w-max": isTrack,
+      })}
+    >
       {blurredShadow && (
         <img className="absolute -z-50 -translate-y-1/5 blur-lg" src={url} />
       )}

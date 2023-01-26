@@ -12,7 +12,7 @@ interface Props {
 }
 
 const RelatedSongs: FC<Props> = ({ songs }) => {
-  if (!songs) return null;
+  if (!songs || songs.data.length === 0) return null;
 
   const { data: songData } = songs;
 

@@ -5,6 +5,7 @@ import ArtistDesc from "./ArtistDesc";
 import RelatedAlbums from "../albums/RelatedAlbums";
 import RelatedPlaylists from "../playlists/RelatedPlaylists";
 import RelatedMusicVideos from "../musicvideo/RelatedMusicVideo";
+import parseArtwork from "../../../utils/parseArtwork";
 
 interface Props {
   artistData: ArtistType;
@@ -22,10 +23,13 @@ const Artist: FC<Props> = ({ artistData }) => {
 
   const { url } = artist.artwork;
 
+  const itemTheme = parseArtwork(artist.artwork);
+  const styles: React.CSSProperties = { background: itemTheme.bgColor };
+
   return (
     <article className="flex flex-col gap-8">
       <main
-        style={{ background: `#${artist.artwork.bgColor}` }}
+        style={styles}
         className="flex flex-col gap-3 items-center md:items-stretch md:flex-row md:gap-6 p-8 rounded-lg"
       >
         <div className="w-3/5 md:w-3/12 h-max">

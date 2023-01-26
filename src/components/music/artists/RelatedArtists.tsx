@@ -9,7 +9,7 @@ interface Props {
 }
 
 const RelatedArtists: FC<Props> = ({ artists }) => {
-  if (!artists) return null;
+  if (!artists || artists.data.length === 0) return null;
 
   const { data: artistsData } = artists;
 

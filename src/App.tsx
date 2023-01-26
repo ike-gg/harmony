@@ -12,6 +12,7 @@ import AlbumView from "./pages/AlbumView";
 import Loading from "./components/UI/Loading";
 import ArtistView from "./pages/ArtistView";
 import MusicVideoView from "./pages/MusicVideoView";
+import PlaylistView from "./pages/PlaylistView";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,15 @@ const router = createBrowserRouter([
           {
             path: ":id",
             element: <MusicVideoView />,
+          },
+        ],
+      },
+      {
+        path: "playlist",
+        children: [
+          {
+            path: ":id",
+            element: <PlaylistView />,
           },
         ],
       },

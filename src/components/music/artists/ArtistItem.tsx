@@ -15,7 +15,7 @@ const ArtistItem: FC<Props> = ({ attributes, id }) => {
 
   return (
     <Link to={detailsPage}>
-      <div className="flex flex-col gap-3 w-36">
+      <div className="flex flex-col gap-3 w-28 md:w-36">
         <Artwork
           artworkUrl={artwork.url}
           size="medium"

@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 import { IconName } from "../../types/Icons";
@@ -18,23 +19,27 @@ const NavbarItem: FC<Props> = ({
   end = false,
   className,
 }) => {
-  const baseClasses =
-    "text-neutral-500 cursor-pointer rounded-md hover:bg-gray-100 hover:shadow-inner";
-  const activeClasses =
-    "bg-black text-white cursor-pointer rounded-md grow md:grow-0";
-
   return (
     <NavLink
       to={to}
       end={end}
       className={({ isActive }) =>
-        (isActive ? activeClasses : baseClasses) + " " + className
+        classNames(
+          "cursor-pointer rounded-md  text-neutral-500",
+          "flex flex-col items-center px-4 py-2",
+          "md:flex-row md:gap-3",
+          className,
+          {
+            "bg-black text-white": isActive,
+            "hover:bg-neutral-100 hover:shadow-inner": !isActive,
+          }
+        )
       }
     >
-      <div className="flex flex-row justify-center items-center flex-nowrap h-10 p-4 gap-2">
-        <Icon className="text-xl" iconName={iconName} />
-        <span className="capitalize translate-y-[0.5px]">{name}</span>
-      </div>
+      <Icon className="text-lg md:text-xl" iconName={iconName} />
+      <span className="capitalize translate-y-[0.5px] text-xs md:text-base">
+        {name}
+      </span>
     </NavLink>
   );
 };

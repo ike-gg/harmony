@@ -12,7 +12,7 @@ interface Props {
 }
 
 const RelatedMusicVideos: FC<Props> = ({ musicVideos }) => {
-  if (!musicVideos) return null;
+  if (!musicVideos || musicVideos.data.length === 0) return null;
 
   const { data: musicVideosData } = musicVideos;
 

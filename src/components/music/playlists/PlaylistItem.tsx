@@ -26,11 +26,13 @@ const PlaylistItem: FC<Props | SkeletonProps> = (props) => {
     );
   }
 
-  const { attributes, id } = props;
+  const { attributes, id: fullId } = props;
   const { artwork, name, curatorName } = attributes;
   const { url: artworkUrl } = artwork;
 
-  const detailsPage = `album/${id}`;
+  const id = fullId.replace(".", "dot");
+
+  const detailsPage = `/playlist/${id}`;
 
   return (
     <div>
