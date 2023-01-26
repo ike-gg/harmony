@@ -32,6 +32,7 @@ const HorizontalWrapper: FC<Props> = ({ children, rows = 1 }) => {
 
   const handleHorizontalScroll = useCallback(
     (event: MouseEvent<HTMLButtonElement>, direction: number) => {
+      console.log(container);
       if (!container) return;
 
       const parentWidth = container.offsetWidth;
