@@ -1,14 +1,5 @@
 import classNames from "classnames";
-import {
-  FC,
-  MouseEvent,
-  MouseEventHandler,
-  ReactNode,
-  useCallback,
-  useMemo,
-  useRef,
-} from "react";
-import Icon from "../Icon";
+import { FC, MouseEvent, ReactNode, useCallback, useRef } from "react";
 import SrollingButton from "./ScrollingButton";
 
 interface Props {
@@ -28,12 +19,12 @@ const HorizontalWrapper: FC<Props> = ({ children, rows = 1 }) => {
     }
   );
 
-  const { current: container } = horizontalWrapper;
-
   const handleHorizontalScroll = useCallback(
     (event: MouseEvent<HTMLButtonElement>, direction: number) => {
-      console.log(`container:`, container);
-      if (!container) return;
+      console.log(`container:`, horizontalWrapper);
+      if (!horizontalWrapper.current) return;
+
+      const { current: container } = horizontalWrapper;
 
       const parentWidth = container.offsetWidth;
       const currentPosition = container.scrollLeft;
@@ -44,7 +35,7 @@ const HorizontalWrapper: FC<Props> = ({ children, rows = 1 }) => {
       });
       console.log("performing scroll");
     },
-    [children, container, horizontalWrapper]
+    [children, horizontalWrapper]
   );
 
   return (
