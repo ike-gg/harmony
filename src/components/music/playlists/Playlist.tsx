@@ -16,8 +16,6 @@ const Playlist: FC<Props> = ({ playlistData }) => {
 
   const { url } = playlist.artwork;
 
-  console.log(playlistData);
-
   const itemTheme = parseArtwork(playlist.artwork);
   const styles: CSSProperties = { backgroundColor: itemTheme.bgColor };
 

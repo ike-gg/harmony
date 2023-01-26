@@ -32,7 +32,7 @@ const HorizontalWrapper: FC<Props> = ({ children, rows = 1 }) => {
 
   const handleHorizontalScroll = useCallback(
     (event: MouseEvent<HTMLButtonElement>, direction: number) => {
-      console.log(container);
+      console.log(`container:`, container);
       if (!container) return;
 
       const parentWidth = container.offsetWidth;
@@ -42,8 +42,9 @@ const HorizontalWrapper: FC<Props> = ({ children, rows = 1 }) => {
         left: newPosition,
         behavior: "smooth",
       });
+      console.log("performing scroll");
     },
-    [children]
+    [children, container, horizontalWrapper]
   );
 
   return (

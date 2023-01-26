@@ -13,7 +13,6 @@ interface Props {
 }
 
 const Song: FC<Props> = ({ songData }) => {
-  console.log(songData);
   const song = songData.data[0].attributes;
   const {
     "music-videos": musicVideos,

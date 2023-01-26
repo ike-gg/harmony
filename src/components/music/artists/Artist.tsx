@@ -12,7 +12,6 @@ interface Props {
 }
 
 const Artist: FC<Props> = ({ artistData }) => {
-  console.log(artistData);
   const artist = artistData.data[0].attributes;
 
   const {

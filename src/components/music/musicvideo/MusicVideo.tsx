@@ -12,7 +12,6 @@ interface Props {
 }
 
 const MusicVideo: FC<Props> = ({ musicVideoData }) => {
-  console.log(musicVideoData);
   const musicVideo = musicVideoData.data[0];
 
   const { attributes } = musicVideo;
