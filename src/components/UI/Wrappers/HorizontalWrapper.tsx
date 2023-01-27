@@ -1,6 +1,8 @@
 import classNames from "classnames";
-import { FC, MouseEvent, ReactNode, useCallback, useRef } from "react";
+import { FC, ReactNode, useEffect, useRef, useState } from "react";
 import SrollingButton from "./ScrollingButton";
+
+export type ScrollDirections = "left" | "right";
 
 interface Props {
   rows?: number;
@@ -8,6 +10,7 @@ interface Props {
 }
 
 const HorizontalWrapper: FC<Props> = ({ children, rows = 1 }) => {
+  const [isOverflow, setIsOverflow] = useState(false);
   const horizontalWrapper = useRef<HTMLDivElement>(null);
 
   const classes = classNames(
@@ -19,13 +22,46 @@ const HorizontalWrapper: FC<Props> = ({ children, rows = 1 }) => {
     }
   );
 
+  const horizontalScroll = (direction: ScrollDirections) => {
+    const { current: container } = horizontalWrapper;
+    if (!container) return;
+
+    let directionValue: number = 0;
+    if (direction === "left") directionValue = -1;
+    if (direction === "right") directionValue = 1;
+
+    const parentWidth = container.offsetWidth;
+    const currentPosition = container.scrollLeft;
+    const newPosition = currentPosition + (parentWidth - 200) * directionValue;
+    container.scroll({
+      left: newPosition,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    const { current: container } = horizontalWrapper;
+    const contentSize = container?.scrollWidth;
+    const containerSize = container?.parentElement?.clientWidth;
+
+    if (contentSize && containerSize && contentSize > containerSize) {
+      setIsOverflow(true);
+    } else {
+      setIsOverflow(false);
+    }
+  }, [horizontalWrapper]);
+
   return (
     <section className="relative flex items-center overflow-hidden">
-      <SrollingButton container={horizontalWrapper} direction="left" />
       <div ref={horizontalWrapper} className={classes}>
         {children}
       </div>
-      <SrollingButton container={horizontalWrapper} direction="right" />
+      {isOverflow && (
+        <>
+          <SrollingButton handleScroll={horizontalScroll} direction="left" />
+          <SrollingButton handleScroll={horizontalScroll} direction="right" />
+        </>
+      )}
     </section>
   );
 };
