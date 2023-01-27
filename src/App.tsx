@@ -7,6 +7,7 @@ import MusicVideoView from "./pages/MusicVideoView";
 import PlaylistView from "./pages/PlaylistView";
 import SongView from "./pages/SongView";
 import Error from "./components/UI/Error";
+import SearchView from "./pages/SearchView";
 
 const router = createHashRouter([
   {
@@ -26,7 +27,7 @@ const router = createHashRouter([
       {
         path: "search",
         index: true,
-        element: "Search",
+        element: <SearchView />,
       },
       {
         path: "album",

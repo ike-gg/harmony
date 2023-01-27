@@ -12,7 +12,7 @@ import PopularMusicVideos from "../components/music/musicvideo/PopularMusicVideo
 const Home = () => {
   return (
     <>
-      <section className="flex flex-col gap-2">
+      <section className="flex flex-col gap-2 mt-5">
         <MainHeading>Home</MainHeading>
         <Paragraph>
           Discover today's top hits and find something just for you! Don't miss
