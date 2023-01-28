@@ -13,7 +13,6 @@ const SearchHints = () => {
     const searchUsingHint = () => {
       dispatch(SearchActions.updateQuery(hint));
       dispatch(SearchActions.updateHints([]));
-      dispatch(SearchActions.shouldFetch(true));
     };
 
     return (

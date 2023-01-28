@@ -11,7 +11,7 @@ import { SearchActions } from "../store/searchSlice";
 import { RootState } from "../store/store";
 
 const SearchView = () => {
-  const { sendRequest } = useAppleMusic(searchQuery);
+  const { sendRequest, isLoading } = useAppleMusic(searchQuery);
 
   const search = useSelector((state: RootState) => state.search);
   const dispatch = useDispatch();
@@ -27,10 +27,6 @@ const SearchView = () => {
         query,
       };
 
-      if (categories.length === 1) {
-        parameters.types = categories[0];
-      }
-
       const results = await sendRequest(parameters);
       dispatch(SearchActions.updateSearchResults(results));
     };
@@ -42,8 +38,8 @@ const SearchView = () => {
     <div className="flex flex-col gap-3">
       <SearchCategories />
       <SearchInput />
-      {/* {!shouldFetch && <SearchHints />} */}
-      {!results && <Loading />}
+      <SearchHints />
+      <Loading />
       <SearchResults />
     </div>
   );

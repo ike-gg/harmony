@@ -8,18 +8,27 @@ import { categories } from "./Categories";
 
 const SearchCategories = () => {
   const [showButtons, setShowButtons] = useState(false);
-  const dispatch = useDispatch();
-  const categoryState = useSelector((state: RootState) => state.search);
 
-  const { defaultCategories, categories: activeCategories } = categoryState;
+  const dispatch = useDispatch();
+  const searchState = useSelector((state: RootState) => state.search);
+
+  const { categories: activeCategory, allCategories } = searchState;
+
+  let containResults: string = "";
+
+  if (allCategories) {
+    containResults = "albums, songs, artists, music videos";
+  }
 
   const Categories = categories.map(({ name, key }) => {
-    const isActive = activeCategories.includes(key);
+    const isActive = activeCategory === key;
 
     const handleCategorySelect = () => {
-      if (isActive && !defaultCategories)
+      if (isActive) {
         dispatch(SearchActions.resestCategories());
-      else dispatch(SearchActions.selectCategory(key));
+      } else {
+        dispatch(SearchActions.selectCategory(key));
+      }
     };
 
     return (
@@ -29,7 +38,7 @@ const SearchCategories = () => {
           {
             "bg-black text-white": isActive,
             "opacity-40 border-neutral-300/50": !isActive,
-            "bg-black/70 text-white": defaultCategories,
+            "bg-black/70 text-white": allCategories,
           }
         )}
         key={key}
@@ -46,12 +55,10 @@ const SearchCategories = () => {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex justify-between text-sm">
+      <div className="flex justify-between text-sm md:text-base">
         <p className="text-neutral-400">
           Search results will include:
-          <span className="text-neutral-800">
-            {" " + activeCategories.join(", ")}
-          </span>
+          <span className="ml-1 text-neutral-800">{containResults}</span>
         </p>
         <button
           onClick={toggleShowButton}

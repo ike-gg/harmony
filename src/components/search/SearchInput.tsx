@@ -2,7 +2,7 @@ import { ChangeEvent, FC, FormEvent, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useAppleMusic from "../../hooks/useAppleMusic";
 import getSearchHint from "../../lib/getSearchHint";
-import { SearchActions } from "../../store/searchSlice";
+import { fetchResults, SearchActions } from "../../store/searchSlice";
 import { RootState } from "../../store/store";
 import Icon from "../UI/Icon";
 
@@ -13,7 +13,6 @@ const SearchInput: FC = () => {
   const query = useSelector((state: RootState) => state.search.query);
 
   const handleInputUpdate = (event: ChangeEvent<HTMLInputElement>) => {
-    dispatch(SearchActions.shouldFetch(false));
     dispatch(SearchActions.updateQuery(event.target.value));
   };
 
@@ -34,8 +33,9 @@ const SearchInput: FC = () => {
 
   const handleSearch = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    fetchResults("wypierdalaj!!");
+    if (query.length === 0) return;
     dispatch(SearchActions.shouldFetch(true));
-    console.log("submiting input, set should fetch");
   };
 
   return (
