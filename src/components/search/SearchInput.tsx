@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import useAppleMusic from "../../hooks/useAppleMusic";
 import getSearchHint from "../../lib/getSearchHint";
 import { fetchResults, SearchActions } from "../../store/searchSlice";
-import { RootState } from "../../store/store";
+import { RootState, useAppDispatch } from "../../store/store";
 import Icon from "../UI/Icon";
 
 const SearchInput: FC = () => {
   const { sendRequest: getHints } = useAppleMusic(getSearchHint);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const query = useSelector((state: RootState) => state.search.query);
 
   const handleInputUpdate = (event: ChangeEvent<HTMLInputElement>) => {
@@ -31,17 +31,16 @@ const SearchInput: FC = () => {
     };
   }, [query]);
 
-  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
+  const handleSearch = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    fetchResults("wypierdalaj!!");
     if (query.length === 0) return;
-    dispatch(SearchActions.shouldFetch(true));
+    dispatch(fetchResults());
   };
 
   return (
     <form onSubmit={handleSearch} className="flex gap-2 relative">
       <input
-        className="w-full bg-white p-3 border border-neutral-200 rounded-md focus:outline-black"
+        className=" w-full bg-white p-3 px-4 border border-neutral-200 rounded-md focus:outline-black"
         value={query}
         onChange={handleInputUpdate}
         placeholder="🔍 Search for content"

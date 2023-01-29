@@ -1,44 +1,44 @@
 import { AlbumAttributes } from "./Album";
+import { ArtistAttributes } from "./Artist";
 import { ArtistsRelationship } from "./Common";
 import { MusicVideoAttributes } from "./MusicVideo";
 import { SongAttributes } from "./Song";
 
 interface SearchQueryAlbums {
-  data: {
-    id: string;
-    type: "albums";
-    attributes: AlbumAttributes;
-  }[];
+  id: string;
+  type: "albums";
+  attributes: AlbumAttributes;
 }
 
 interface SearchQuerySongs {
-  data: {
-    id: string;
-    type: "songs";
-    attributes: SongAttributes;
-  }[];
+  id: string;
+  type: "songs";
+  attributes: SongAttributes;
 }
 
 interface SearchQueryArtists {
-  data: {
-    id: string;
-    type: "artists";
-    attributes: ArtistsRelationship;
-  }[];
+  id: string;
+  type: "artists";
+  attributes: ArtistAttributes;
 }
 
 interface SearchQueryMusicVideos {
-  data: {
-    id: string;
-    type: "music-videos";
-    attributes: MusicVideoAttributes;
-  }[];
+  id: string;
+  type: "music-videos";
+  attributes: MusicVideoAttributes;
 }
+
 export interface SearchQuery {
   results: {
-    artists?: SearchQueryArtists;
-    albums?: SearchQueryAlbums;
-    songs?: SearchQuerySongs;
-    ["music-videos"]: SearchQueryMusicVideos;
+    artists?: { data: SearchQueryArtists[] };
+    albums?: { data: SearchQueryAlbums[] };
+    songs?: { data: SearchQuerySongs[] };
+    ["music-videos"]?: { data: SearchQueryMusicVideos[] };
   };
 }
+
+export type SearchResults =
+  | SearchQueryAlbums
+  | SearchQueryArtists
+  | SearchQueryMusicVideos
+  | SearchQuerySongs;

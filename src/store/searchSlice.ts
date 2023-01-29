@@ -1,28 +1,45 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  PayloadAction,
-  ThunkAction,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import searchQuery from "../lib/searchQuery";
 import { SearchQuery } from "../types/api/SearchQuery";
 import { SearchCategories } from "../types/Search";
-import { AppThunk } from "./store";
+import { RootState } from "./store";
 
 interface SearchState {
   query: string;
-  categories?: SearchCategories;
+  category?: SearchCategories;
   allCategories: boolean;
-  shouldFetch: boolean;
+  isLoading: boolean;
+  isEditing: boolean;
+  error: boolean;
   hints?: string[];
   results?: SearchQuery;
 }
 
 const initialState: SearchState = {
   query: "",
-  shouldFetch: false,
+  error: false,
+  isLoading: false,
+  isEditing: true,
   allCategories: true,
 };
+
+export const fetchResults = createAsyncThunk(
+  "search/fetchResults",
+  async (arg, { getState }) => {
+    const { search } = getState() as RootState;
+    const { query, category } = search;
+    let params: { query: string; types?: string } = { query };
+
+    if (category) params.types = category;
+
+    try {
+      const results = await searchQuery(params);
+      return results;
+    } catch {
+      throw new Error();
+    }
+  }
+);
 
 export const searchSlice = createSlice({
   name: "search",
@@ -30,42 +47,39 @@ export const searchSlice = createSlice({
   reducers: {
     updateQuery(state, action: PayloadAction<string>) {
       state.query = action.payload;
+      state.isEditing = true;
     },
     updateHints(state, action: PayloadAction<string[]>) {
       state.hints = action.payload;
     },
-    updateSearchResults(state, action: PayloadAction<SearchQuery | undefined>) {
-      if (!action.payload) state.results = undefined;
-      state.results = action.payload;
-    },
     selectCategory(state, action: PayloadAction<SearchCategories>) {
-      state.categories = action.payload;
+      state.isEditing = true;
+      state.category = action.payload;
       state.allCategories = false;
     },
     resestCategories(state) {
+      state.isEditing = true;
       state.allCategories = true;
-      state.categories = undefined;
-    },
-    shouldFetch(state, action: PayloadAction<boolean>) {
-      state.shouldFetch = action.payload;
+      state.category = undefined;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchResults.pending, (state) => {
+      state.isLoading = true;
+      state.isEditing = false;
+    });
+    builder.addCase(fetchResults.fulfilled, (state, { payload }) => {
+      state.results = payload;
+      state.isLoading = false;
+      state.isEditing = false;
+    });
+    builder.addCase(fetchResults.rejected, (state) => {
+      state.error = true;
+      state.isLoading = false;
+      state.isEditing = false;
+    });
+  },
 });
-
-export const fetchResults = (lol: string): AppThunk => {
-  console.log("???");
-  return async (dispatch) => {
-    console.log("dispatching");
-    try {
-      await setTimeout(() => {
-        dispatch(SearchActions.updateQuery(lol));
-        console.log("lol??");
-      }, 5000);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
 
 export const SearchActions = searchSlice.actions;
 

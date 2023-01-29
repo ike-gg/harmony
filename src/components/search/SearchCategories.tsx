@@ -12,13 +12,12 @@ const SearchCategories = () => {
   const dispatch = useDispatch();
   const searchState = useSelector((state: RootState) => state.search);
 
-  const { categories: activeCategory, allCategories } = searchState;
+  const { category: activeCategory, allCategories } = searchState;
 
   let containResults: string = "";
 
-  if (allCategories) {
-    containResults = "albums, songs, artists, music videos";
-  }
+  if (allCategories) containResults = "albums, songs, artists, music videos";
+  if (activeCategory) containResults = activeCategory;
 
   const Categories = categories.map(({ name, key }) => {
     const isActive = activeCategory === key;
@@ -37,8 +36,8 @@ const SearchCategories = () => {
           "w-full p-2 rounded-md border border-transparent text-sm md:text-base",
           {
             "bg-black text-white": isActive,
-            "opacity-40 border-neutral-300/50": !isActive,
-            "bg-black/70 text-white": allCategories,
+            "opacity-75 border-neutral-300/50": !isActive,
+            "bg-black/90 text-white": allCategories,
           }
         )}
         key={key}

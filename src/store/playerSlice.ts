@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SongAttributes } from "../types/api/Song";
+import { RootState } from "./store";
 
 interface PlayerState {
   song?: SongAttributes;
@@ -18,6 +19,20 @@ const initialState: PlayerState = {
 interface SongAttributesID extends SongAttributes {
   id: string;
 }
+
+// export const fetchCurrentSong = createAsyncThunk(
+//   "play/changeSong",
+//   async (songId: string, { getState }) => {
+//     const { player } = getState() as RootState;
+
+//     try {
+//       const results = await searchQuery(params);
+//       return results;
+//     } catch {
+//       throw new Error();
+//     }
+//   }
+// );
 
 export const playerSlice = createSlice({
   name: "player",

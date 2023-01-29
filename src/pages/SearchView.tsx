@@ -4,43 +4,24 @@ import SearchCategories from "../components/search/SearchCategories";
 import SearchHints from "../components/search/SearchHints";
 import SearchInput from "../components/search/SearchInput";
 import SearchResults from "../components/search/SearchResults";
+import Error from "../components/UI/Error";
 import Loading from "../components/UI/Loading";
-import useAppleMusic from "../hooks/useAppleMusic";
-import searchQuery from "../lib/searchQuery";
-import { SearchActions } from "../store/searchSlice";
 import { RootState } from "../store/store";
 
 const SearchView = () => {
-  const { sendRequest, isLoading } = useAppleMusic(searchQuery);
-
   const search = useSelector((state: RootState) => state.search);
   const dispatch = useDispatch();
 
-  const { shouldFetch, query, categories, hints, results } = search;
-
-  useEffect(() => {
-    const fetchResults = async () => {
-      if (!shouldFetch) return;
-      dispatch(SearchActions.updateSearchResults(undefined));
-
-      const parameters: { query: string; types?: string } = {
-        query,
-      };
-
-      const results = await sendRequest(parameters);
-      dispatch(SearchActions.updateSearchResults(results));
-    };
-
-    fetchResults();
-  }, [shouldFetch]);
+  const { error, isLoading, hints, results, isEditing } = search;
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-4">
       <SearchCategories />
       <SearchInput />
-      <SearchHints />
-      <Loading />
-      <SearchResults />
+      {!isLoading && isEditing && hints && <SearchHints />}
+      {isLoading && <Loading />}
+      {error && !isLoading && <Error />}
+      {!error && !isLoading && !isEditing && results && <SearchResults />}
     </div>
   );
 };

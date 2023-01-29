@@ -51,7 +51,7 @@ const SongItem: FC<Props | SkeletonProps> = (props) => {
     <div className="relative rounded-md" style={isCurrentPlaying ? styles : {}}>
       <Link to={detailsPage} className="flex flex-row w-56 gap-2 snap-start">
         <Artwork artworkUrl={artworkUrl} size="extrasmall" />
-        <div className="flex flex-col pt-2 basis-0 grow">
+        <div className="flex flex-col pt-2 pr-2 basis-0 grow">
           <h3 className="font-medium text-base leading-[1.2rem] line-clamp-2">
             {name}
           </h3>
