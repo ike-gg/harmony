@@ -1,17 +1,26 @@
 import { CSSProperties, FC } from "react";
+import { fetchCurrentSong } from "../../../store/playerSlice";
+import { useAppDispatch } from "../../../store/store";
 import { SongAttributes } from "../../../types/api/Song";
 import parseArtwork from "../../../utils/parseArtwork";
+import Button from "../../UI/Button";
 import Hyperlink from "../../UI/Hyperlink";
 
 interface Props {
   attributes: SongAttributes;
+  id: string;
 }
 
-const SongDesc: FC<Props> = ({ attributes }) => {
+const SongDesc: FC<Props> = ({ attributes, id }) => {
+  const dispatch = useAppDispatch();
   const { name, url, artwork, albumName, artistName } = attributes;
 
   const itemTheme = parseArtwork(artwork);
   const styles: CSSProperties = { color: itemTheme.primaryColor };
+
+  const playSong = () => {
+    dispatch(fetchCurrentSong(id));
+  };
 
   return (
     <div className="flex flex-col gap-4 text-center md:text-left md:pt-6">
@@ -32,7 +41,10 @@ const SongDesc: FC<Props> = ({ attributes }) => {
           {`from ${albumName}, by ${artistName}`}
         </h3>
       </div>
-      <div className="mt-auto">
+      <div className="mt-auto flex gap-2">
+        <Button theme="white" icon="play" onClick={playSong}>
+          Play
+        </Button>
         <Hyperlink href={url} target={"_blank"} icon="external-link-alt">
           Check on Apple Music
         </Hyperlink>

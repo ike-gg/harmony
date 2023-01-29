@@ -1,28 +1,24 @@
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
-import Marquee from "react-fast-marquee";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import Artwork from "../music/Artwork";
+import { isMobile } from "react-device-detect";
 import VolumeSlider from "./VolumeSlider";
-import { isIOS, isMobile } from "react-device-detect";
 import ProgressBar from "./ProgressBar";
 import PlayButton from "./PlayButton";
 import SongDetails from "./SongDetails";
+import parseArtwork from "../../utils/parseArtwork";
 
 const PlayerBar = () => {
   const audioSource = useRef<HTMLAudioElement>(null);
   const player = useSelector((state: RootState) => state.player);
   const [time, setTime] = useState(0);
 
-  const { isPlaying } = player;
+  const { isPlaying, isLoading } = player;
 
   useEffect(() => {
     if (!audioSource.current) return;
-    if (isPlaying) {
-      audioSource.current.play();
-    } else {
-      audioSource.current.pause();
-    }
+    isPlaying && audioSource.current.play();
+    !isPlaying && audioSource.current.pause();
   }, [isPlaying]);
 
   if (!player.song) {
@@ -41,20 +37,17 @@ const PlayerBar = () => {
 
   const { artwork } = player.song;
 
-  const backgroundColor = artwork.bgColor;
-  const textColor = artwork.textColor1;
-
-  const opacity = isPlaying ? "1" : "0.6";
+  const { addAlpha, bgColor, primaryColor } = parseArtwork(artwork);
 
   return (
     <div
       style={{
         transition: "0.5s",
-        backgroundColor: `#${backgroundColor}EE`,
-        color: `#${textColor}`,
-        opacity,
-        border: `2px solid #${backgroundColor}DD`,
-        boxShadow: `0 0 15px #${backgroundColor}BB`,
+        backgroundColor: addAlpha(bgColor, 0.95),
+        color: primaryColor,
+        opacity: isLoading ? "0.6" : "1",
+        border: `2px solid ${addAlpha(bgColor, 0.5)}`,
+        boxShadow: `0 0 15px ${addAlpha(bgColor, 0.7)}`,
       }}
       className={`fixed w-full p-4 pr-6 md:p-3 gap-4 lg:max-w-screen-lg lg:m-auto bottom-0 flex items-center backdrop-blur-md rounded-t-md overflow-x-auto z-50 -translate-x-4`}
     >
@@ -65,14 +58,19 @@ const PlayerBar = () => {
         autoPlay
       />
       <SongDetails song={player.song} />
-      <PlayButton audio={audioSource.current} />
+      <PlayButton />
       <ProgressBar
-        color={textColor}
+        track={addAlpha(primaryColor, 0.2)}
+        range={primaryColor}
         currentTime={time}
         duration={audioSource.current?.duration}
       />
       {!isMobile && (
-        <VolumeSlider color={textColor} handleVolume={changeVolumeHandle} />
+        <VolumeSlider
+          track={addAlpha(primaryColor, 0.2)}
+          range={primaryColor}
+          handleVolume={changeVolumeHandle}
+        />
       )}
     </div>
   );

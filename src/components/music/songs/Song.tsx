@@ -7,12 +7,14 @@ import SongDesc from "./SongDesc";
 import parseArtwork from "../../../utils/parseArtwork";
 import RelatedAlbums from "../albums/RelatedAlbums";
 import RelatedMusicVideos from "../musicvideo/RelatedMusicVideo";
+import Hyperlink from "../../UI/Hyperlink";
 
 interface Props {
   songData: SongType;
 }
 
 const Song: FC<Props> = ({ songData }) => {
+  const { id } = songData.data[0];
   const song = songData.data[0].attributes;
   const {
     "music-videos": musicVideos,
@@ -34,7 +36,7 @@ const Song: FC<Props> = ({ songData }) => {
         <div className="w-3/5 md:w-3/12 h-max">
           <Artwork artworkUrl={url} size="large" blurredShadow />
         </div>
-        <SongDesc attributes={song} />
+        <SongDesc attributes={song} id={id} />
       </main>
       <FooterWrapper>
         <RelatedAlbums albums={albums} />

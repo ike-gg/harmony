@@ -58,7 +58,7 @@ const SongItem: FC<Props | SkeletonProps> = (props) => {
           <p className="text-xs line-clamp-2 opacity-70">{artistName}</p>
         </div>
       </Link>
-      <SharedPlayButton song={attributes} id={id} />
+      <SharedPlayButton id={id} />
     </div>
   );
 };

@@ -4,7 +4,8 @@ import Icon from "../UI/Icon";
 
 interface Props {
   handleVolume: (value: number) => void;
-  color?: string;
+  track?: string;
+  range?: string;
 }
 
 type VolumeLevels =
@@ -14,7 +15,7 @@ type VolumeLevels =
   | "volume-off"
   | "volume-mute";
 
-const VolumeSlider: FC<Props> = ({ handleVolume, color }) => {
+const VolumeSlider: FC<Props> = ({ handleVolume, range, track }) => {
   const [volume, setVolume] = useState<number>(0.5);
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [lastVolume, setLastVolume] = useState<number>(0);
@@ -56,16 +57,16 @@ const VolumeSlider: FC<Props> = ({ handleVolume, color }) => {
         className="relative flex h-5 w-full touch-none items-center"
       >
         <Track
-          style={{ backgroundColor: `#${color}50` }}
+          style={{ backgroundColor: track }}
           className="relative h-1.5 w-full grow rounded-full bg-neutral"
         >
           <Range
-            style={{ backgroundColor: `#${color}` }}
+            style={{ backgroundColor: range }}
             className="absolute h-full rounded-full"
           />
         </Track>
         <Thumb
-          style={{ backgroundColor: `#${color}` }}
+          style={{ backgroundColor: range }}
           className="block h-3 w-3 rounded-full cursor-grab active:cursor-grabbing"
         />
       </Root>

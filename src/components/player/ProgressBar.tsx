@@ -5,7 +5,8 @@ import secondsToMinutesAndSeconds from "../../utils/secToMinSec";
 interface Props {
   currentTime?: number;
   duration?: number;
-  color?: string;
+  track?: string;
+  range?: string;
 }
 
 const Timestamp: FC<{ children?: string }> = ({ children }) => {
@@ -13,7 +14,7 @@ const Timestamp: FC<{ children?: string }> = ({ children }) => {
   return <p className="text-sm opacity-70">{children}</p>;
 };
 
-const ProgressBar: FC<Props> = ({ currentTime, duration, color }) => {
+const ProgressBar: FC<Props> = ({ currentTime, duration, track, range }) => {
   const currentTimestamp = secondsToMinutesAndSeconds(currentTime);
   const endTimestamp = secondsToMinutesAndSeconds(duration);
 
@@ -34,11 +35,11 @@ const ProgressBar: FC<Props> = ({ currentTime, duration, color }) => {
         className="relative flex h-5 w-full touch-none items-center"
       >
         <Track
-          style={{ backgroundColor: `#${color}50` }}
+          style={{ backgroundColor: track }}
           className="relative h-1.5 w-full grow rounded-full"
         >
           <Range
-            style={{ backgroundColor: `#${color}` }}
+            style={{ backgroundColor: range }}
             className="absolute h-full rounded-full duration-250 ease-linear"
           />
         </Track>

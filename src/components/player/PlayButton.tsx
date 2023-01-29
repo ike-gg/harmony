@@ -1,24 +1,25 @@
 import { FC, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { PlayerActions } from "../../store/playerSlice";
+import { RootState, useAppDispatch } from "../../store/store";
 import Icon from "../UI/Icon";
 
-interface Props {
-  audio: HTMLAudioElement | null;
-}
-
-const PlayButton: FC<Props> = ({ audio }) => {
+const PlayButton: FC = () => {
   const [icon, setIcon] = useState<"play" | "pause">("pause");
+  const dispatch = useAppDispatch();
+  const player = useSelector((state: RootState) => state.player);
+
+  const { isPlaying } = player;
 
   useEffect(() => {
-    if (!audio) return;
-    audio.paused ? setIcon("play") : setIcon("pause");
-  }, [audio?.paused]);
+    isPlaying ? setIcon("pause") : setIcon("play");
+  }, [isPlaying]);
 
   const toggleSwitch = () => {
-    if (!audio) return;
-    if (audio.paused) {
-      audio.play();
+    if (isPlaying) {
+      dispatch(PlayerActions.pause());
     } else {
-      audio.pause();
+      dispatch(PlayerActions.resume());
     }
   };
 
