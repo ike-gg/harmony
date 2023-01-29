@@ -11,6 +11,8 @@ interface Props {
 const ArtistItem: FC<Props> = ({ attributes, id }) => {
   const { artwork, name } = attributes;
 
+  if (!artwork) return null;
+
   const detailsPage = `/artist/${id}`;
 
   return (

@@ -10,6 +10,8 @@ interface Props {
 const ArtistDesc: FC<Props> = ({ attributes }) => {
   const { name, url, genreNames, artwork } = attributes;
 
+  if (!artwork) return null;
+
   const genres = genreNames.join(", ");
 
   const itemTheme = parseArtwork(artwork);

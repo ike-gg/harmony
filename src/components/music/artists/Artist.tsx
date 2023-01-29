@@ -20,6 +20,8 @@ const Artist: FC<Props> = ({ artistData }) => {
     "music-videos": musicVideos,
   } = artistData.data[0].relationships;
 
+  if (!artist.artwork) return null;
+
   const { url } = artist.artwork;
 
   const itemTheme = parseArtwork(artist.artwork);
