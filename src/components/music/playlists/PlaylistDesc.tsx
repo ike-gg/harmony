@@ -44,7 +44,7 @@ const PlaylistDesc: FC<Props> = ({ attributes, id, tracksId }) => {
             Check on Apple Music
           </Hyperlink>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 justify-center md:justify-start">
           {tracksId && <SharedPlayButton id={tracksId} />}
           <LibraryButton item={{ attributes, type: "playlists", id }} />
         </div>

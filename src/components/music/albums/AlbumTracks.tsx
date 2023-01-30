@@ -1,12 +1,14 @@
 import classNames from "classnames";
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import useAppleMusic from "../../../hooks/useAppleMusic";
 import getSong from "../../../lib/getSong";
 import { fetchCurrentSong, PlayerActions } from "../../../store/playerSlice";
 import { RootState, useAppDispatch } from "../../../store/store";
 import { AlbumRelationshipsTracks } from "../../../types/api/Album";
 import { SongsRelationship } from "../../../types/api/Common";
+import Icon from "../../UI/Icon";
 
 interface Props {
   tracks?: AlbumRelationshipsTracks;
@@ -29,6 +31,8 @@ const AlbumTracks: FC<Props> = ({ tracks }) => {
   const content = tracksData.map((track) => {
     const { attributes, id } = track;
     const { name, trackNumber, artwork } = attributes;
+
+    const detailsPage = `/song/${id}`;
 
     const playTrack = playMusic.bind(null, id);
     const isUnreleased = attributes.previews.length === 0;
@@ -61,6 +65,16 @@ const AlbumTracks: FC<Props> = ({ tracks }) => {
         {isUnreleased && (
           <span className="pl-3 text-neutral-400 font-light">Unreleased</span>
         )}
+        <Link
+          onClick={(e) => e.stopPropagation()}
+          to={detailsPage}
+          className="ml-auto px-4"
+        >
+          <Icon
+            className="text-2xl opacity-50 h-full flex my-auto line-clamp-1 "
+            iconName="info-circle"
+          />
+        </Link>
       </li>
     );
   });

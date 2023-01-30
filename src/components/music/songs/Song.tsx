@@ -34,7 +34,12 @@ const Song: FC<Props> = ({ songData }) => {
         className="flex flex-col gap-3 items-center md:items-stretch md:flex-row md:gap-6 p-8 rounded-lg"
       >
         <div className="w-3/5 md:w-3/12 h-max">
-          <Artwork artworkUrl={url} size="large" blurredShadow />
+          <Artwork
+            artworkUrl={url}
+            size="large"
+            blurredShadow
+            className="h-full w-full"
+          />
         </div>
         <SongDesc attributes={song} id={id} />
       </main>

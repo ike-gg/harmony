@@ -21,6 +21,7 @@ const LibraryItems: FC<Props> = ({ libraryItems }) => {
       const link = `/album/${id}`;
       albums.push(
         <LibraryItem
+          key={id}
           artworkUrl={artwork.url}
           detailsPage={link}
           title={name}
@@ -35,6 +36,7 @@ const LibraryItems: FC<Props> = ({ libraryItems }) => {
       const link = `/artist/${id}`;
       artists.push(
         <LibraryItem
+          key={id}
           artworkUrl={artwork.url}
           detailsPage={link}
           title={name}
@@ -49,6 +51,7 @@ const LibraryItems: FC<Props> = ({ libraryItems }) => {
       const link = `/playlist/${id}`;
       playlists.push(
         <LibraryItem
+          key={id}
           artworkUrl={artwork.url}
           detailsPage={link}
           title={name}
@@ -62,6 +65,7 @@ const LibraryItems: FC<Props> = ({ libraryItems }) => {
       const link = `/album/${id}`;
       songs.push(
         <LibraryItem
+          key={id}
           artworkUrl={artwork.url}
           detailsPage={link}
           title={name}

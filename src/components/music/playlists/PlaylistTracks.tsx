@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import useAppleMusic from "../../../hooks/useAppleMusic";
 import getSong from "../../../lib/getSong";
 import { fetchCurrentSong, PlayerActions } from "../../../store/playerSlice";
@@ -7,6 +8,7 @@ import { RootState, useAppDispatch } from "../../../store/store";
 import { SongsRelationship } from "../../../types/api/Common";
 import parseArtwork from "../../../utils/parseArtwork";
 import removeParentheses from "../../../utils/removeParentheses";
+import Icon from "../../UI/Icon";
 import Artwork from "../Artwork";
 
 interface Props {
@@ -29,6 +31,8 @@ const PlaylistTracks: FC<Props> = ({ tracks }) => {
     const { attributes, id } = track;
     const { name: fullName, artwork, artistName } = attributes;
     const name = removeParentheses(fullName);
+
+    const detailsPage = `/song/${id}`;
 
     const playTrack = playMusic.bind(null, id);
     const isCurrentlyPlaying = player.id === id;
@@ -64,6 +68,16 @@ const PlaylistTracks: FC<Props> = ({ tracks }) => {
             {`by ${artistName}`}
           </span>
         </div>
+        <Link
+          onClick={(e) => e.stopPropagation()}
+          to={detailsPage}
+          className="ml-auto p-2"
+        >
+          <Icon
+            className="text-2xl opacity-50 h-full flex my-auto line-clamp-1 "
+            iconName="info-circle"
+          />
+        </Link>
       </li>
     );
   });
