@@ -23,10 +23,10 @@ const Button: FC<Props> = ({
       onClick={onClick}
       className={classNames(
         className,
-        "px-3 py-1 inline-block rounded-md text-base md:text-base",
+        "px-3 py-1 inline-block rounded-md text-base md:text-base border border-transparent",
         {
           "bg-black text-white/90": theme === "black",
-          "bg-white text-black": theme === "white",
+          "bg-white text-black border-neutral-100": theme === "white",
         }
       )}
     >

@@ -11,10 +11,12 @@ interface Props {
 }
 
 const Playlist: FC<Props> = ({ playlistData }) => {
-  const playlist = playlistData.data[0].attributes;
+  const { attributes: playlist, id } = playlistData.data[0];
   const { tracks } = playlistData.data[0].relationships;
 
   const { url } = playlist.artwork;
+
+  const tracksId = tracks.data.map((track) => track.id);
 
   const itemTheme = parseArtwork(playlist.artwork);
   const styles: CSSProperties = { backgroundColor: itemTheme.bgColor };
@@ -28,7 +30,7 @@ const Playlist: FC<Props> = ({ playlistData }) => {
         <div className="w-3/5 md:w-3/12 h-max">
           <Artwork artworkUrl={url} size="large" blurredShadow />
         </div>
-        <PlaylistDesc attributes={playlist} totalTracks={tracks.data.length} />
+        <PlaylistDesc id={id} attributes={playlist} tracksId={tracksId} />
       </main>
       <PlaylistTracks tracks={tracks} />
     </article>

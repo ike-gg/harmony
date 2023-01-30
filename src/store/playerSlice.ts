@@ -6,27 +6,22 @@ import { RootState } from "./store";
 interface PlayerState {
   song?: SongAttributes;
   id?: string;
+  nextTracks: string[];
   isPlaying: boolean;
   isLoading: boolean;
+  shouldFetch: boolean;
 }
 
 const initialState: PlayerState = {
+  nextTracks: [],
   isPlaying: false,
   isLoading: false,
+  shouldFetch: false,
 };
-
-interface SongAttributesID extends SongAttributes {
-  id: string;
-}
 
 export const fetchCurrentSong = createAsyncThunk(
   "play/changeSong",
-  async (songId: string, { getState }) => {
-    const state = getState() as RootState;
-    console.log(state);
-    // state.player.isPlaying = false;
-    // state.player.isLoading = true;
-
+  async (songId: string, { getState, dispatch }) => {
     try {
       const song = await getSong({ id: songId });
       return song;
@@ -40,30 +35,30 @@ export const playerSlice = createSlice({
   name: "player",
   initialState,
   reducers: {
-    changeSong(state, action: PayloadAction<SongAttributesID>) {
-      state.isLoading = false;
-      state.song = action.payload;
-      state.id = action.payload.id;
-      state.isPlaying = true;
-    },
-    loadingSong(state, action: PayloadAction<string>) {
-      state.id = action.payload;
-      state.isLoading = true;
-      state.isPlaying = false;
-    },
-    removeSong(state) {
-      state.song = undefined;
-    },
     resume(state) {
       state.isPlaying = true;
     },
     pause(state) {
       state.isPlaying = false;
     },
+    setSong(state, action: PayloadAction<string>) {
+      state.nextTracks = [];
+      state.id = action.payload;
+      state.shouldFetch = true;
+    },
+    setTracks(state, action: PayloadAction<string[]>) {
+      state.nextTracks = action.payload;
+    },
+    nextTrack(state) {
+      const nextTrackId = state.nextTracks.shift();
+      if (nextTrackId) {
+        state.id = nextTrackId;
+        state.shouldFetch = true;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCurrentSong.pending, (state, action) => {
-      console.log("pausing is loading true");
       state.id = action.meta.arg;
       state.isPlaying = false;
       state.isLoading = true;
@@ -73,9 +68,11 @@ export const playerSlice = createSlice({
       state.id = payload.data[0].id;
       state.isLoading = false;
       state.isPlaying = true;
+      state.shouldFetch = false;
     });
     builder.addCase(fetchCurrentSong.rejected, (state) => {
       state.isLoading = false;
+      state.shouldFetch = false;
     });
   },
 });

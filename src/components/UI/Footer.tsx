@@ -10,7 +10,7 @@ const Footer: FC<Props> = ({ className }) => {
   return (
     <footer
       className={classNames(
-        "py-8 flex flex-col md:flex-row items-center justify-between gap-4 rounded-lg opacity-75 hover:opacity-100",
+        "py-8 flex flex-col md:flex-row md:items-center justify-between gap-5 rounded-lg opacity-75 hover:opacity-100",
         className
       )}
     >

@@ -1,13 +1,15 @@
 import { FC } from "react";
 import { ArtistAttributes } from "../../../types/api/Artist";
 import parseArtwork from "../../../utils/parseArtwork";
+import LibraryButton from "../../library/LibraryButton";
 import Hyperlink from "../../UI/Hyperlink";
 
 interface Props {
   attributes: ArtistAttributes;
+  id: string;
 }
 
-const ArtistDesc: FC<Props> = ({ attributes }) => {
+const ArtistDesc: FC<Props> = ({ attributes, id }) => {
   const { name, url, genreNames, artwork } = attributes;
 
   if (!artwork) return null;
@@ -36,10 +38,13 @@ const ArtistDesc: FC<Props> = ({ attributes }) => {
           {genres}
         </h3>
       </div>
-      <div className="mt-auto">
+      <div className="mt-auto flex flex-col gap-2">
         <Hyperlink href={url} target={"_blank"} icon="external-link-alt">
           Check on Apple Music
         </Hyperlink>
+        <div className="flex gap-2">
+          <LibraryButton item={{ attributes, type: "artists", id }} />
+        </div>
       </div>
     </div>
   );

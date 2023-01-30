@@ -2,8 +2,8 @@ import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useAppleMusic from "../../../hooks/useAppleMusic";
 import getSong from "../../../lib/getSong";
-import { PlayerActions } from "../../../store/playerSlice";
-import { RootState } from "../../../store/store";
+import { fetchCurrentSong, PlayerActions } from "../../../store/playerSlice";
+import { RootState, useAppDispatch } from "../../../store/store";
 import { SongsRelationship } from "../../../types/api/Common";
 import parseArtwork from "../../../utils/parseArtwork";
 import removeParentheses from "../../../utils/removeParentheses";
@@ -16,15 +16,11 @@ interface Props {
 const PlaylistTracks: FC<Props> = ({ tracks }) => {
   if (!tracks) return null;
 
-  const dispatch = useDispatch();
-  const { sendRequest } = useAppleMusic(getSong);
+  const dispatch = useAppDispatch();
   const player = useSelector((state: RootState) => state.player);
 
   const playMusic = async (songId: string) => {
-    dispatch(PlayerActions.loadingSong(songId));
-    const track = await sendRequest({ id: songId });
-    const songAttirbutes = track.data[0].attributes;
-    dispatch(PlayerActions.changeSong({ ...songAttirbutes, id: songId }));
+    dispatch(PlayerActions.setSong(songId));
   };
 
   const tracksData = tracks.data;

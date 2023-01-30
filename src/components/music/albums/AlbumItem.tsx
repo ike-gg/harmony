@@ -1,4 +1,5 @@
 import Skeleton from "@yisheng90/react-loading";
+import classNames from "classnames";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { AlbumAttributes } from "../../../types/api/Album";
@@ -8,6 +9,7 @@ interface Props {
   type: "loaded";
   id: string;
   attributes: AlbumAttributes;
+  className?: string;
 }
 
 interface SkeletonProps {
@@ -25,22 +27,23 @@ const AlbumItem: FC<Props | SkeletonProps> = (props) => {
     );
   }
 
-  const { attributes, id } = props;
+  const { attributes, id, className } = props;
   const { artwork, name, artistName } = attributes;
   const { url: artworkUrl } = artwork;
 
   const detailsPage = `/album/${id}`;
 
   return (
-    <div>
-      <Link to={detailsPage} className="flex flex-col w-44 snap-start">
-        <Artwork artworkUrl={artworkUrl} size="small" />
-        <h3 className="mt-1 pl-1 font-medium text-neutral-700 text-base text-ellipsis whitespace-nowrap overflow-hidden">
-          {name}
-        </h3>
-        <p className="pl-1 text-xs text-neutral-400">{artistName}</p>
-      </Link>
-    </div>
+    <Link
+      to={detailsPage}
+      className={classNames("flex flex-col w-44 snap-start", className)}
+    >
+      <Artwork artworkUrl={artworkUrl} size="small" className="w-full" />
+      <h3 className="mt-1 pl-1 font-medium text-neutral-700 text-base text-ellipsis whitespace-nowrap overflow-hidden">
+        {name}
+      </h3>
+      <p className="pl-1 text-xs text-neutral-400">{artistName}</p>
+    </Link>
   );
 };
 

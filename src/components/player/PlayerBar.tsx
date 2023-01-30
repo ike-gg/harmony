@@ -1,19 +1,21 @@
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import { RootState, useAppDispatch } from "../../store/store";
 import { isMobile } from "react-device-detect";
 import VolumeSlider from "./VolumeSlider";
 import ProgressBar from "./ProgressBar";
 import PlayButton from "./PlayButton";
 import SongDetails from "./SongDetails";
 import parseArtwork from "../../utils/parseArtwork";
+import { fetchCurrentSong, PlayerActions } from "../../store/playerSlice";
 
 const PlayerBar = () => {
+  const dispatch = useAppDispatch();
   const audioSource = useRef<HTMLAudioElement>(null);
   const player = useSelector((state: RootState) => state.player);
   const [time, setTime] = useState(0);
 
-  const { isPlaying, isLoading } = player;
+  const { isPlaying, isLoading, nextTracks, id, song, shouldFetch } = player;
 
   useEffect(() => {
     if (!audioSource.current) return;
@@ -21,7 +23,13 @@ const PlayerBar = () => {
     !isPlaying && audioSource.current.pause();
   }, [isPlaying]);
 
-  if (!player.song) {
+  useEffect(() => {
+    if (id && shouldFetch) {
+      dispatch(fetchCurrentSong(id));
+    }
+  }, [id, shouldFetch]);
+
+  if (!song) {
     return null;
   }
 
@@ -35,7 +43,11 @@ const PlayerBar = () => {
     setTime(currentStamp);
   };
 
-  const { artwork } = player.song;
+  const endHandle = () => {
+    dispatch(PlayerActions.nextTrack());
+  };
+
+  const { artwork } = song;
 
   const { addAlpha, bgColor, primaryColor } = parseArtwork(artwork);
 
@@ -54,10 +66,11 @@ const PlayerBar = () => {
       <audio
         ref={audioSource}
         onTimeUpdate={timeUpdateHandle}
-        src={player.song.previews[0].url}
+        onEnded={endHandle}
+        src={song.previews[0].url}
         autoPlay
       />
-      <SongDetails song={player.song} />
+      <SongDetails song={song} />
       <PlayButton />
       <ProgressBar
         track={addAlpha(primaryColor, 0.2)}

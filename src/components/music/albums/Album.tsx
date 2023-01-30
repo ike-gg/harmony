@@ -6,16 +6,19 @@ import AlbumDesc from "./AlbumDesc";
 import AlbumFooter from "./AlbumFooter";
 import AlbumTracks from "./AlbumTracks";
 import RelatedArtists from "../artists/RelatedArtists";
+import SharedPlayButton from "../../player/SharedPlayButton";
 
 interface Props {
   albumData: AlbumType;
 }
 
 const Album: FC<Props> = ({ albumData }) => {
-  const album = albumData.data[0].attributes;
+  const { attributes: album, id } = albumData.data[0];
   const { tracks, artists } = albumData.data[0].relationships;
 
   const { url } = album.artwork;
+
+  const tracksId = tracks?.data.map((item) => item.id);
 
   return (
     <article className="flex flex-col gap-8">
@@ -23,7 +26,7 @@ const Album: FC<Props> = ({ albumData }) => {
         <div className="w-3/5 md:w-3/12">
           <Artwork artworkUrl={url} size="large" blurredShadow />
         </div>
-        <AlbumDesc attributes={album} />
+        <AlbumDesc attributes={album} id={id} tracksId={tracksId} />
       </main>
       <AlbumTracks tracks={tracks} />
       <AlbumFooter attributes={album} />

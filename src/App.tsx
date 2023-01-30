@@ -8,6 +8,7 @@ import PlaylistView from "./pages/PlaylistView";
 import SongView from "./pages/SongView";
 import Error from "./components/UI/Error";
 import SearchView from "./pages/SearchView";
+import LibraryView from "./pages/LibraryView";
 
 const router = createHashRouter([
   {
@@ -22,7 +23,7 @@ const router = createHashRouter([
       {
         path: "library",
         index: true,
-        element: "library",
+        element: <LibraryView />,
       },
       {
         path: "search",

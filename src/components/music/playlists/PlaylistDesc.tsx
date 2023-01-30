@@ -1,17 +1,20 @@
 import { CSSProperties, FC } from "react";
 import { PlaylistAttributes } from "../../../types/api/Playlist";
 import parseArtwork from "../../../utils/parseArtwork";
+import LibraryButton from "../../library/LibraryButton";
+import SharedPlayButton from "../../player/SharedPlayButton";
 import Hyperlink from "../../UI/Hyperlink";
 
 interface Props {
   attributes: PlaylistAttributes;
-  totalTracks: number;
+  tracksId: string[];
+  id: string;
 }
 
-const PlaylistDesc: FC<Props> = ({ attributes, totalTracks }) => {
+const PlaylistDesc: FC<Props> = ({ attributes, id, tracksId }) => {
   const { name, url, artwork, curatorName } = attributes;
 
-  const desc = `${curatorName}, ${totalTracks} tracks`;
+  const desc = `${curatorName}, ${tracksId.length} tracks`;
 
   const itemTheme = parseArtwork(artwork);
   const styles: CSSProperties = { color: itemTheme.primaryColor };
@@ -35,10 +38,16 @@ const PlaylistDesc: FC<Props> = ({ attributes, totalTracks }) => {
           {desc}
         </h3>
       </div>
-      <div className="mt-auto">
-        <Hyperlink href={url} target={"_blank"} icon="external-link-alt">
-          Check on Apple Music
-        </Hyperlink>
+      <div className="mt-auto flex flex-col gap-2">
+        <div>
+          <Hyperlink href={url} target={"_blank"} icon="external-link-alt">
+            Check on Apple Music
+          </Hyperlink>
+        </div>
+        <div className="flex gap-2">
+          {tracksId && <SharedPlayButton id={tracksId} />}
+          <LibraryButton item={{ attributes, type: "playlists", id }} />
+        </div>
       </div>
     </div>
   );

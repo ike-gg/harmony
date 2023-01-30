@@ -61,3 +61,33 @@ export interface PlaylistsRelationship {
     attributes: PlaylistAttributes;
   }[];
 }
+
+export interface LibraryAlbums {
+  id: string;
+  type: "albums";
+  attributes: AlbumAttributes;
+}
+
+export interface LibrarySongs {
+  id: string;
+  type: "songs";
+  attributes: SongAttributes;
+}
+
+export interface LibraryArtists {
+  id: string;
+  type: "artists";
+  attributes: ArtistAttributes;
+}
+
+export interface LibraryPlaylists {
+  id: string;
+  type: "playlists";
+  attributes: PlaylistAttributes;
+}
+
+export type LibraryItem =
+  | LibraryAlbums
+  | LibrarySongs
+  | LibraryArtists
+  | LibraryPlaylists;

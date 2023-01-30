@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Artist: FC<Props> = ({ artistData }) => {
-  const artist = artistData.data[0].attributes;
+  const { attributes: artist, id } = artistData.data[0];
 
   const {
     albums,
@@ -36,7 +36,7 @@ const Artist: FC<Props> = ({ artistData }) => {
         <div className="w-3/5 md:w-3/12 h-max">
           <Artwork artworkUrl={url} size="large" blurredShadow />
         </div>
-        <ArtistDesc attributes={artist} />
+        <ArtistDesc id={id} attributes={artist} />
       </main>
       <RelatedAlbums rows={2} albums={albums} />
       <RelatedMusicVideos musicVideos={musicVideos} />

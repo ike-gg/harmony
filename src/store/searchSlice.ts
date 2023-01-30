@@ -65,6 +65,7 @@ export const searchSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchResults.pending, (state) => {
+      state.error = false;
       state.isLoading = true;
       state.isEditing = false;
     });

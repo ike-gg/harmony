@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { RootState } from "../../../store/store";
 import { SongAttributes } from "../../../types/api/Song";
 import parseArtwork from "../../../utils/parseArtwork";
-import SharedPlayButton from "../../player/SharedPlayButton";
+import SharedMiniPlayButton from "../../player/SharedMiniPlayButton";
 import Artwork from "../Artwork";
 
 interface Props {
@@ -58,7 +58,7 @@ const SongItem: FC<Props | SkeletonProps> = (props) => {
           <p className="text-xs line-clamp-2 opacity-70">{artistName}</p>
         </div>
       </Link>
-      <SharedPlayButton id={id} />
+      <SharedMiniPlayButton id={id} />
     </div>
   );
 };
