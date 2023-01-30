@@ -74,7 +74,7 @@ const PlaylistTracks: FC<Props> = ({ tracks }) => {
           className="ml-auto p-2"
         >
           <Icon
-            className="text-2xl opacity-50 h-full flex my-auto line-clamp-1 "
+            className="text-2xl opacity-20 h-full flex my-auto line-clamp-1 "
             iconName="info-circle"
           />
         </Link>

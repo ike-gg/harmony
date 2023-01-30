@@ -5,6 +5,7 @@ import Error from "../components/UI/Error";
 import Loading from "../components/UI/Loading";
 import useAppleMusic from "../hooks/useAppleMusic";
 import getMusicVideo from "../lib/getMusicVideo";
+import { motion } from "framer-motion";
 
 const MusicVideoView = () => {
   const params = useParams();
@@ -23,7 +24,15 @@ const MusicVideoView = () => {
 
   if (error) return <Error />;
   if (!musicVideoInfo) return <Loading />;
-  return <MusicVideo musicVideoData={musicVideoInfo} />;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0 }}
+    >
+      <MusicVideo musicVideoData={musicVideoInfo} />
+    </motion.div>
+  );
 };
 
 export default MusicVideoView;
