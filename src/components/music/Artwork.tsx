@@ -5,7 +5,6 @@ import getArtworkUrl, { Size } from "../../utils/getArtworkUrl";
 interface Props {
   artworkUrl: string;
   size: Size;
-  blurredShadow?: boolean;
   isTrack?: boolean;
   className?: string;
 }
@@ -13,7 +12,6 @@ interface Props {
 const Artwork: FC<Props> = ({
   artworkUrl,
   size = "medium",
-  blurredShadow,
   className,
   isTrack,
 }) => {
@@ -25,9 +23,6 @@ const Artwork: FC<Props> = ({
         "min-w-max": isTrack,
       })}
     >
-      {blurredShadow && (
-        <img className="absolute -z-50 -translate-y-1/5 blur-lg" src={url} />
-      )}
       <img
         className={`rounded-md shadow-lg aspect-square ${className}`}
         src={url}

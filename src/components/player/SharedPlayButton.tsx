@@ -1,16 +1,17 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useSelector } from "react-redux";
-import { fetchCurrentSong, PlayerActions } from "../../store/playerSlice";
+import { PlayerActions } from "../../store/playerSlice";
 import { RootState, useAppDispatch } from "../../store/store";
 import Button from "../UI/Button";
 
 interface Props {
-  id: string | string[];
+  id?: string | string[];
 }
 
 const SharedPlayButton: FC<Props> = ({ id }) => {
-  let player = useSelector((state: RootState) => state.player);
   const dispatch = useAppDispatch();
+
+  if (!id) return null;
 
   const onClick = () => {
     if (Array.isArray(id)) {

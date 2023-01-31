@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { AlbumType } from "../../../types/api/Album";
 import FooterWrapper from "../../UI/Wrappers/FooterWrapper";
-import Artwork from "../Artwork";
-import AlbumDesc from "./AlbumDesc";
 import AlbumFooter from "./AlbumFooter";
 import AlbumTracks from "./AlbumTracks";
 import RelatedArtists from "../artists/RelatedArtists";
 import SharedPlayButton from "../../player/SharedPlayButton";
+import ItemDesc from "../itemDesc/ItemDesc";
+import LibraryButton from "../../library/LibraryButton";
 
 interface Props {
   albumData: AlbumType;
@@ -16,18 +16,22 @@ const Album: FC<Props> = ({ albumData }) => {
   const { attributes: album, id } = albumData.data[0];
   const { tracks, artists } = albumData.data[0].relationships;
 
-  const { url } = album.artwork;
+  const { artwork, artistName, name, url } = album;
 
   const tracksId = tracks?.data.map((item) => item.id);
 
   return (
     <article className="flex flex-col gap-8">
-      <main className="flex flex-col gap-3 items-center md:items-stretch md:flex-row md:gap-6">
-        <div className="w-3/5 md:w-3/12">
-          <Artwork artworkUrl={url} size="large" blurredShadow />
-        </div>
-        <AlbumDesc attributes={album} id={id} tracksId={tracksId} />
-      </main>
+      <ItemDesc
+        artwork={artwork}
+        subtitle="ALBUM"
+        title={name}
+        text={artistName}
+        urlItem={url}
+      >
+        <SharedPlayButton id={tracksId} />
+        <LibraryButton item={{ attributes: album, id, type: "albums" }} />
+      </ItemDesc>
       <AlbumTracks tracks={tracks} />
       <AlbumFooter attributes={album} />
       <FooterWrapper>

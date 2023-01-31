@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { ArtistType } from "../../../types/api/Artist";
-import Artwork from "../Artwork";
-import ArtistDesc from "./ArtistDesc";
 import RelatedAlbums from "../albums/RelatedAlbums";
 import RelatedPlaylists from "../playlists/RelatedPlaylists";
 import RelatedMusicVideos from "../musicvideo/RelatedMusicVideo";
-import parseArtwork from "../../../utils/parseArtwork";
+import ItemDesc from "../itemDesc/ItemDesc";
+import LibraryButton from "../../library/LibraryButton";
 
 interface Props {
   artistData: ArtistType;
@@ -13,6 +12,8 @@ interface Props {
 
 const Artist: FC<Props> = ({ artistData }) => {
   const { attributes: artist, id } = artistData.data[0];
+  const { artwork, name, genreNames, url } = artist;
+  const genres = genreNames.join(", ");
 
   const {
     albums,
@@ -20,24 +21,19 @@ const Artist: FC<Props> = ({ artistData }) => {
     "music-videos": musicVideos,
   } = artistData.data[0].relationships;
 
-  if (!artist.artwork) return null;
-
-  const { url } = artist.artwork;
-
-  const itemTheme = parseArtwork(artist.artwork);
-  const styles: React.CSSProperties = { background: itemTheme.bgColor };
+  if (!artwork) return null;
 
   return (
     <article className="flex flex-col gap-8">
-      <main
-        style={styles}
-        className="flex flex-col gap-3 items-center md:items-stretch md:flex-row md:gap-6 p-8 rounded-lg"
+      <ItemDesc
+        artwork={artwork}
+        subtitle="ARTIST"
+        title={name}
+        text={genres}
+        urlItem={url}
       >
-        <div className="w-3/5 md:w-3/12 h-max">
-          <Artwork artworkUrl={url} size="large" blurredShadow />
-        </div>
-        <ArtistDesc id={id} attributes={artist} />
-      </main>
+        <LibraryButton item={{ attributes: artist, id, type: "artists" }} />
+      </ItemDesc>
       <RelatedAlbums rows={2} albums={albums} />
       <RelatedMusicVideos musicVideos={musicVideos} />
       <RelatedPlaylists playlists={playlists} />

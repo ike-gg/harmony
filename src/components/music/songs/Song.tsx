@@ -1,48 +1,40 @@
-import { CSSProperties, FC } from "react";
+import { FC } from "react";
 import FooterWrapper from "../../UI/Wrappers/FooterWrapper";
-import Artwork from "../Artwork";
 import RelatedArtists from "../artists/RelatedArtists";
 import { SongType } from "../../../types/api/Song";
-import SongDesc from "./SongDesc";
-import parseArtwork from "../../../utils/parseArtwork";
 import RelatedAlbums from "../albums/RelatedAlbums";
 import RelatedMusicVideos from "../musicvideo/RelatedMusicVideo";
-import Hyperlink from "../../UI/Hyperlink";
+import ItemDesc from "../itemDesc/ItemDesc";
+import SharedPlayButton from "../../player/SharedPlayButton";
+import LibraryButton from "../../library/LibraryButton";
 
 interface Props {
   songData: SongType;
 }
 
 const Song: FC<Props> = ({ songData }) => {
-  const { id } = songData.data[0];
-  const song = songData.data[0].attributes;
+  const { id, attributes: song } = songData.data[0];
+  const { name, artistName, albumName, artwork, url } = song;
+  const text = `from ${albumName}, by ${artistName}`;
+
   const {
     "music-videos": musicVideos,
     albums,
     artists,
   } = songData.data[0].relationships;
 
-  const { url } = song.artwork;
-
-  const itemTheme = parseArtwork(song.artwork);
-  const styles: CSSProperties = { backgroundColor: itemTheme.bgColor };
-
   return (
     <article className="flex flex-col gap-8">
-      <main
-        style={styles}
-        className="flex flex-col gap-3 items-center md:items-stretch md:flex-row md:gap-6 p-8 rounded-lg"
+      <ItemDesc
+        artwork={artwork}
+        subtitle="SONG"
+        title={name}
+        text={text}
+        urlItem={url}
       >
-        <div className="w-3/5 md:w-3/12 h-max">
-          <Artwork
-            artworkUrl={url}
-            size="large"
-            blurredShadow
-            className="h-full w-full"
-          />
-        </div>
-        <SongDesc attributes={song} id={id} />
-      </main>
+        <SharedPlayButton id={id} />
+        <LibraryButton item={{ attributes: song, id, type: "songs" }} />
+      </ItemDesc>
       <FooterWrapper>
         <RelatedAlbums albums={albums} />
         <RelatedArtists artists={artists} />

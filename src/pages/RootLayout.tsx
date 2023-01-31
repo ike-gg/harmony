@@ -6,8 +6,8 @@ import PlayerBar from "../components/player/PlayerBar";
 import Footer from "../components/UI/Footer";
 
 export const animationProps: AnimationProps = {
-  initial: { opacity: 0, y: -10, scale: 0.99 },
-  animate: { opacity: 1, y: 0, scale: 1 },
+  initial: { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0 },
   transition: { duration: 0.2 },
 };
 

@@ -61,7 +61,7 @@ const LibraryItems: FC<Props> = ({ libraryItems }) => {
     if (item.type === "songs") {
       const { attributes, id } = item;
       const { artwork, artistName, name } = attributes;
-      const link = `/album/${id}`;
+      const link = `/song/${id}`;
       songs.push(
         <LibraryItem
           key={id}
@@ -76,6 +76,7 @@ const LibraryItems: FC<Props> = ({ libraryItems }) => {
 
   return (
     <>
+      {libraryItems.length === 0 && <h1>aha!?</h1>}
       {albums.length > 0 && (
         <LibraryWrapper title="Albums">{albums}</LibraryWrapper>
       )}
