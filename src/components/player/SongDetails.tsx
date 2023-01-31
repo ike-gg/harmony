@@ -14,7 +14,7 @@ const SongDetails: FC<Props> = ({ song }) => {
   return (
     <div className="flex flex-row items-center gap-2 w-40">
       <Artwork artworkUrl={url} size="icon" />
-      <Marquee className="flex flex-col" gradient={false} speed={30}>
+      <Marquee gradient={false} speed={30}>
         <div>
           <h2 className="text-base font-semibold pr-4">{name}</h2>
           <p className="text-xs opacity-60 pr-4">{artistName}</p>

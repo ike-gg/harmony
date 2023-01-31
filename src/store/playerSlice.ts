@@ -3,6 +3,14 @@ import getSong from "../lib/getSong";
 import { SongAttributes } from "../types/api/Song";
 import { RootState } from "./store";
 
+const getLocalStorageVolume = () => {
+  const localData = localStorage.getItem("volume");
+  if (localData === null) return 0.5;
+  const volumeValue = Number(localData);
+  if (Number.isNaN(volumeValue)) return 0.5;
+  return volumeValue;
+};
+
 interface PlayerState {
   song?: SongAttributes;
   id?: string;
@@ -10,6 +18,8 @@ interface PlayerState {
   isPlaying: boolean;
   isLoading: boolean;
   shouldFetch: boolean;
+  volume: number;
+  isMuted: boolean;
 }
 
 const initialState: PlayerState = {
@@ -17,6 +27,8 @@ const initialState: PlayerState = {
   isPlaying: false,
   isLoading: false,
   shouldFetch: false,
+  volume: getLocalStorageVolume(),
+  isMuted: false,
 };
 
 export const fetchCurrentSong = createAsyncThunk(
@@ -40,6 +52,14 @@ export const playerSlice = createSlice({
     },
     pause(state) {
       state.isPlaying = false;
+    },
+    setVolume(state, action: PayloadAction<number>) {
+      state.volume = action.payload;
+      state.isMuted = false;
+      localStorage.setItem("volume", String(action.payload));
+    },
+    toggleMute(state) {
+      state.isMuted = !state.isMuted;
     },
     setSong(state, action: PayloadAction<string>) {
       state.nextTracks = [];

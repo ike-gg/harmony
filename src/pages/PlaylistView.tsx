@@ -7,6 +7,7 @@ import Loading from "../components/UI/Loading";
 import useAppleMusic from "../hooks/useAppleMusic";
 import getPlaylist from "../lib/getPlaylist";
 import { motion } from "framer-motion";
+import { animationProps } from "./RootLayout";
 
 const PlaylistView = () => {
   const params = useParams();
@@ -28,11 +29,7 @@ const PlaylistView = () => {
   if (error) return <Error />;
   if (!playlistInfo) return <Loading />;
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-    >
+    <motion.div {...animationProps}>
       <Playlist playlistData={playlistInfo} />
     </motion.div>
   );

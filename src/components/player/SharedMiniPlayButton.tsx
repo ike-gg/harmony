@@ -22,7 +22,7 @@ const SharedMiniPlayButton: FC<Props> = ({ id }) => {
   return (
     <button
       onClick={handlePlay}
-      className="absolute flex justify-center items-center right-1 bottom-1 w-6 h-6 rounded-full bg-neutral-100 text-neutral-400 hover:bg-neutral-200 hover:text-neutral-600 z-20"
+      className="absolute flex justify-center items-center right-2 bottom-2 w-6 h-6 rounded-full bg-white/40 text-black/40 hover:bg-white/60 hover:text-black/80 z-20"
     >
       <Icon
         iconName={id === currentId && isPlaying ? "pause" : "play"}

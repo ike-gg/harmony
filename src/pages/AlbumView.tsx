@@ -5,7 +5,8 @@ import Error from "../components/UI/Error";
 import Loading from "../components/UI/Loading";
 import useAppleMusic from "../hooks/useAppleMusic";
 import getAlbum from "../lib/getAlbum";
-import { motion } from "framer-motion";
+import { AnimationProps, motion } from "framer-motion";
+import { animationProps } from "./RootLayout";
 
 const AlbumView = () => {
   const params = useParams();
@@ -21,11 +22,7 @@ const AlbumView = () => {
   if (error) return <Error />;
   if (!albumInfo) return <Loading />;
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-    >
+    <motion.div {...animationProps}>
       <Album albumData={albumInfo} />
     </motion.div>
   );

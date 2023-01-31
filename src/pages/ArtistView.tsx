@@ -6,6 +6,7 @@ import Loading from "../components/UI/Loading";
 import useAppleMusic from "../hooks/useAppleMusic";
 import getArtist from "../lib/getArtist";
 import { motion } from "framer-motion";
+import { animationProps } from "./RootLayout";
 
 const ArtistView = () => {
   const params = useParams();
@@ -25,11 +26,7 @@ const ArtistView = () => {
   if (error) return <Error />;
   if (!artistInfo) return <Loading />;
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-    >
+    <motion.div {...animationProps}>
       <Artist artistData={artistInfo} />
     </motion.div>
   );

@@ -8,6 +8,7 @@ import Error from "../components/UI/Error";
 import Loading from "../components/UI/Loading";
 import { RootState } from "../store/store";
 import { motion } from "framer-motion";
+import { animationProps } from "./RootLayout";
 
 const SearchView = () => {
   const search = useSelector((state: RootState) => state.search);
@@ -16,12 +17,7 @@ const SearchView = () => {
   const { error, isLoading, hints, results, isEditing } = search;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-      className="flex flex-col gap-4"
-    >
+    <motion.div {...animationProps} className="flex flex-col gap-4">
       <SearchCategories />
       <SearchInput />
       {!isLoading && isEditing && hints && <SearchHints />}

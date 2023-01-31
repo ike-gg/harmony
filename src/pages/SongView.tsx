@@ -7,6 +7,7 @@ import Loading from "../components/UI/Loading";
 import useAppleMusic from "../hooks/useAppleMusic";
 import getSong from "../lib/getSong";
 import { motion } from "framer-motion";
+import { animationProps } from "./RootLayout";
 
 const SongView = () => {
   const params = useParams();
@@ -22,11 +23,7 @@ const SongView = () => {
   if (error) return <Error />;
   if (!songInfo) return <Loading />;
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-    >
+    <motion.div {...animationProps}>
       <Song songData={songInfo} />
     </motion.div>
   );

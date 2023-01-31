@@ -25,13 +25,9 @@ const MusicVideoView = () => {
   if (error) return <Error />;
   if (!musicVideoInfo) return <Loading />;
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0 }}
-    >
+    <div>
       <MusicVideo musicVideoData={musicVideoInfo} />
-    </motion.div>
+    </div>
   );
 };
 

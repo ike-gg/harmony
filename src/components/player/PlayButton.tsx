@@ -6,6 +6,7 @@ import Icon from "../UI/Icon";
 
 const PlayButton: FC = () => {
   const [icon, setIcon] = useState<"play" | "pause">("pause");
+
   const dispatch = useAppDispatch();
   const player = useSelector((state: RootState) => state.player);
 

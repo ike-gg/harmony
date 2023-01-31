@@ -1,9 +1,11 @@
 import { Range, Root, Thumb, Track } from "@radix-ui/react-slider";
 import { FC, useState } from "react";
+import { useSelector } from "react-redux";
+import { PlayerActions } from "../../store/playerSlice";
+import { RootState, useAppDispatch } from "../../store/store";
 import Icon from "../UI/Icon";
 
 interface Props {
-  handleVolume: (value: number) => void;
   track?: string;
   range?: string;
 }
@@ -15,10 +17,12 @@ type VolumeLevels =
   | "volume-off"
   | "volume-mute";
 
-const VolumeSlider: FC<Props> = ({ handleVolume, range, track }) => {
-  const [volume, setVolume] = useState<number>(0.5);
-  const [isMuted, setIsMuted] = useState<boolean>(false);
-  const [lastVolume, setLastVolume] = useState<number>(0);
+const VolumeSlider: FC<Props> = ({ range, track }) => {
+  const player = useSelector((state: RootState) => state.player);
+  const dispatch = useAppDispatch();
+  // const [lastVolume, setLastVolume] = useState<number>(0);
+
+  const { isMuted, volume } = player;
 
   let icon: VolumeLevels = "volume";
 
@@ -30,29 +34,31 @@ const VolumeSlider: FC<Props> = ({ handleVolume, range, track }) => {
 
   const handleVolumeChange = (value: number[]) => {
     const [newVolume] = value;
-    setVolume(newVolume);
-    handleVolume(newVolume);
+    dispatch(PlayerActions.setVolume(newVolume));
   };
 
   const toggleMuteHandle = () => {
-    setIsMuted((prev) => !prev);
-    if (isMuted) {
-      handleVolumeChange([lastVolume]);
-    } else {
-      setLastVolume(volume);
-      handleVolumeChange([0]);
-    }
+    dispatch(PlayerActions.toggleMute());
+    // console.log("JUST AFTER DISPATCHING:", isMuted);
+    // if (isMuted) {
+    //   console.log("is muted.");
+    //   handleVolumeChange([lastVolume]);
+    // } else {
+    //   console.log("not muted");
+    //   setLastVolume(volume);
+    //   handleVolumeChange([0]);
+    // }
   };
 
   return (
     <div className="hidden md:flex flex-row gap-4 w-36 items-center">
       <Icon iconName={icon} onClick={toggleMuteHandle} className="text-2xl" />
       <Root
-        defaultValue={[1]}
+        defaultValue={[volume]}
         max={1}
         min={0}
         step={0.01}
-        value={[volume]}
+        value={[isMuted ? 0 : volume]}
         onValueChange={handleVolumeChange}
         className="relative flex h-5 w-full touch-none items-center"
       >

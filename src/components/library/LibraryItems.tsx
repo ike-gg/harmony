@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { LibraryItem as LibraryItemType } from "../../types/api/Common";
-import AlbumItem from "../music/albums/AlbumItem";
 import LibraryItem from "./LibraryItem";
 import LibraryWrapper from "./LibraryWrapper";
 

@@ -18,7 +18,7 @@ const LibraryButton: FC<Props> = ({ item }) => {
     library.items.some((item) => item.id === id)
   );
 
-  const handleLibrary = () => {
+  const handleItemInLibrary = () => {
     if (!isAdded) {
       dispatch(LibraryActions.addItem(item));
       setIsAdded(true);
@@ -31,7 +31,7 @@ const LibraryButton: FC<Props> = ({ item }) => {
 
   return (
     <Button
-      onClick={handleLibrary}
+      onClick={handleItemInLibrary}
       theme="white"
       icon={isAdded ? "trash" : "plus"}
     >

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { LibraryItem } from "../types/api/Common";
 
-const getLocalStorage = () => {
+const getLocalStorageLibrary = () => {
   const localData = localStorage.getItem("library");
   if (!localData) return [];
   return JSON.parse(localData);
@@ -12,7 +12,7 @@ interface LibraryState {
 }
 
 const initialState: LibraryState = {
-  items: getLocalStorage(),
+  items: getLocalStorageLibrary(),
 };
 
 export const librarySlice = createSlice({

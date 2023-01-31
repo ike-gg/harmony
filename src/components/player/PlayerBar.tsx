@@ -10,12 +10,13 @@ import parseArtwork from "../../utils/parseArtwork";
 import { fetchCurrentSong, PlayerActions } from "../../store/playerSlice";
 
 const PlayerBar = () => {
-  const dispatch = useAppDispatch();
   const audioSource = useRef<HTMLAudioElement>(null);
+  const dispatch = useAppDispatch();
   const player = useSelector((state: RootState) => state.player);
   const [time, setTime] = useState(0);
 
-  const { isPlaying, isLoading, nextTracks, id, song, shouldFetch } = player;
+  const { isPlaying, isLoading, id, song, shouldFetch, isMuted, volume } =
+    player;
 
   useEffect(() => {
     if (!audioSource.current) return;
@@ -29,22 +30,19 @@ const PlayerBar = () => {
     }
   }, [id, shouldFetch]);
 
+  useEffect(() => {
+    if (!audioSource.current) return;
+    if (isMuted) audioSource.current.volume = 0;
+    audioSource.current.volume = volume;
+  }, [isMuted, volume]);
+
   if (!song) {
     return null;
   }
 
-  const changeVolumeHandle = (newVolume: number) => {
-    if (!audioSource.current) return;
-    audioSource.current.volume = newVolume;
-  };
-
   const timeUpdateHandle = (event: SyntheticEvent<HTMLAudioElement>) => {
     const currentStamp = event.currentTarget.currentTime;
     setTime(currentStamp);
-  };
-
-  const endHandle = () => {
-    dispatch(PlayerActions.nextTrack());
   };
 
   const { artwork } = song;
@@ -54,7 +52,7 @@ const PlayerBar = () => {
   return (
     <div
       style={{
-        transition: "0.5s",
+        transition: "0.4s",
         backgroundColor: addAlpha(bgColor, 0.95),
         color: primaryColor,
         opacity: isLoading ? "0.6" : "1",
@@ -66,7 +64,7 @@ const PlayerBar = () => {
       <audio
         ref={audioSource}
         onTimeUpdate={timeUpdateHandle}
-        onEnded={endHandle}
+        onEnded={() => dispatch(PlayerActions.nextTrack())}
         src={song.previews[0].url}
         autoPlay
       />
@@ -82,7 +80,6 @@ const PlayerBar = () => {
         <VolumeSlider
           track={addAlpha(primaryColor, 0.2)}
           range={primaryColor}
-          handleVolume={changeVolumeHandle}
         />
       )}
     </div>

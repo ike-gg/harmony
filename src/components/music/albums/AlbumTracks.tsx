@@ -1,13 +1,10 @@
 import classNames from "classnames";
 import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import useAppleMusic from "../../../hooks/useAppleMusic";
-import getSong from "../../../lib/getSong";
-import { fetchCurrentSong, PlayerActions } from "../../../store/playerSlice";
+import { PlayerActions } from "../../../store/playerSlice";
 import { RootState, useAppDispatch } from "../../../store/store";
 import { AlbumRelationshipsTracks } from "../../../types/api/Album";
-import { SongsRelationship } from "../../../types/api/Common";
 import Icon from "../../UI/Icon";
 
 interface Props {
@@ -51,7 +48,7 @@ const AlbumTracks: FC<Props> = ({ tracks }) => {
         key={id}
         onClick={isUnreleased ? undefined : playTrack}
         className={classNames(
-          "first:border-t-0 flex border-t border-neutral-200 py-4 relative opacity-70",
+          "first:border-t-0 flex border-t border-neutral-200 items-center py-3 relative opacity-70",
           {
             "hover:bg-neutral-100 hover:cursor-pointer hover:opacity-100":
               !isUnreleased,
