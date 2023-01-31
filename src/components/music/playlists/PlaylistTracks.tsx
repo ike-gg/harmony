@@ -56,12 +56,7 @@ const PlaylistTracks: FC<Props> = ({ tracks }) => {
         }
       >
         <span className="opacity-50 min-w-[1.4rem] text-center">{++index}</span>
-        <Artwork
-          artworkUrl={artwork.url}
-          size="icon"
-          className="min-w-max"
-          isTrack
-        />
+        <Artwork artworkUrl={artwork.url} size="icon" className="min-w-max" />
         <div className="flex flex-col">
           <span className="line-clamp-1 text-sm md:text-base">{name}</span>
           <span className="line-clamp-1 text-xs md:text-sm opacity-50">
