@@ -33,7 +33,7 @@ const PlayerBar = () => {
   useEffect(() => {
     if (!audioSource.current) return;
     if (isMuted) audioSource.current.volume = 0;
-    audioSource.current.volume = volume;
+    else audioSource.current.volume = volume;
   }, [isMuted, volume]);
 
   if (!song || !song.previews[0].url) {
