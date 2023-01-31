@@ -70,8 +70,8 @@ const SearchResults = () => {
         />
         <div className="flex flex-col justify-evenly text-ellipsis overflow-hidden whitespace-nowrap">
           <ItemSubtitle>{resultType}</ItemSubtitle>
-          <ItemTitle className="mt-0 pl-0">{name}</ItemTitle>
-          <ItemName className="pl-0">{footerText}</ItemName>
+          <ItemTitle spaced={false}>{name}</ItemTitle>
+          <ItemName spaced={false}>{footerText}</ItemName>
         </div>
         <Icon
           className="ml-auto text-2xl text-neutral-500 h-full flex my-auto line-clamp-1 "
