@@ -27,6 +27,10 @@ export const librarySlice = createSlice({
       state.items = state.items.filter((item) => item.id !== action.payload);
       localStorage.setItem("library", JSON.stringify(state.items));
     },
+    removeAllItems(state) {
+      state.items = [];
+      localStorage.setItem("library", JSON.stringify(state.items));
+    },
   },
 });
 

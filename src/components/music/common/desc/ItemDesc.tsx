@@ -1,11 +1,11 @@
 import { CSSProperties, FC } from "react";
-import { Artwork as ArtworkType } from "../../../types/api/Common";
-import parseArtwork from "../../../utils/parseArtwork";
-import Hyperlink from "../../UI/Hyperlink";
-import Artwork from "../Artwork";
-import ItemSubtitle from "./ItemSubtitle";
-import ItemText from "./ItemText";
-import ItemTitle from "./ItemTitle";
+import { Artwork as ArtworkType } from "../../../../types/api/Common";
+import parseArtwork from "../../../../utils/parseArtwork";
+import Hyperlink from "../../../UI/Hyperlink";
+import Artwork from "../../Artwork";
+import DescSubtitle from "./DescSubtitle";
+import DescText from "./DescText";
+import DescTitle from "./DescTitle";
 
 interface Props {
   artwork: ArtworkType;
@@ -29,14 +29,14 @@ const ItemDesc: FC<Props> = (props) => {
       style={cardStyles}
       className="flex flex-col gap-3 items-center md:items-stretch md:flex-row md:gap-6 p-8 rounded-lg"
     >
-      <figure className="w-3/5 md:w-3/12 h-max">
+      <figure className="w-3/5 md:max-w-[16rem] h-full">
         <Artwork artworkUrl={url} size="large" className="h-full w-full" />
       </figure>
       <div className="flex flex-col gap-4 text-center md:text-left md:pt-6">
         <div style={styles}>
-          <ItemSubtitle>{subtitle}</ItemSubtitle>
-          <ItemTitle>{title}</ItemTitle>
-          <ItemText>{text}</ItemText>
+          <DescSubtitle>{subtitle}</DescSubtitle>
+          <DescTitle>{title}</DescTitle>
+          <DescText>{text}</DescText>
         </div>
         <div className="mt-auto flex flex-col gap-2">
           <div>

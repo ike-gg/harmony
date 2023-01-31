@@ -14,14 +14,8 @@ const RelatedAlbums: FC<Props> = ({ albums, rows = 1 }) => {
   const albumsData = albums.data;
 
   let content = albumsData.map((album) => {
-    return (
-      <AlbumItem
-        attributes={album.attributes}
-        id={album.id}
-        key={album.id}
-        type="loaded"
-      />
-    );
+    const { attributes, id } = album;
+    return <AlbumItem attributes={attributes} id={id} key={id} type="loaded" />;
   });
 
   return (

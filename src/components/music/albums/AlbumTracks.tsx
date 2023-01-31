@@ -64,7 +64,7 @@ const AlbumTracks: FC<Props> = ({ tracks }) => {
         )}
         <Link
           onClick={(e) => e.stopPropagation()}
-          to={detailsPage}
+          to={isUnreleased ? "" : detailsPage}
           className="ml-auto px-4"
         >
           <Icon

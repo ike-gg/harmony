@@ -1,8 +1,8 @@
 import Skeleton from "@yisheng90/react-loading";
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 import { Link } from "react-router-dom";
-import { AlbumAttributes } from "../../../types/api/Album";
 import { PlaylistAttributes } from "../../../types/api/Playlist";
+import parseArtwork from "../../../utils/parseArtwork";
 import Artwork from "../Artwork";
 
 interface Props {
@@ -34,6 +34,16 @@ const PlaylistItem: FC<Props | SkeletonProps> = (props) => {
 
   const detailsPage = `/playlist/${id}`;
 
+  const itemTheme = parseArtwork(artwork);
+
+  const backgroundStyle: CSSProperties = {
+    backgroundImage: `radial-gradient(circle at top, ${
+      itemTheme.bgColor
+    } 50%, ${itemTheme.addAlpha(itemTheme.bgColor, 0.85)})`,
+  };
+  const primaryStyle: CSSProperties = { color: itemTheme.primaryColor };
+  const secondaryStyle: CSSProperties = { color: itemTheme.secondaryColor };
+
   return (
     <div>
       <Link
@@ -46,21 +56,16 @@ const PlaylistItem: FC<Props | SkeletonProps> = (props) => {
           className="rounded-b-none shadow-none"
         />
         <div
-          style={{
-            backgroundImage: `radial-gradient(circle at top, #${artwork.bgColor} 50%, #${artwork.bgColor}DD)`,
-          }}
-          className="text-center p-4 rounded-b-md flex flex-col justify-center gap-1 h-24"
+          style={backgroundStyle}
+          className="text-center p-4 rounded-b-md flex flex-col justify-center h-20"
         >
           <h3
-            style={{ color: `#${artwork.textColor1}` }}
+            style={primaryStyle}
             className="font-semibold text-lg line-clamp-1"
           >
             {name}
           </h3>
-          <p
-            style={{ color: `#${artwork.textColor4}` }}
-            className="line-clamp-1"
-          >
+          <p style={secondaryStyle} className="line-clamp-1">
             {curatorName}
           </p>
         </div>

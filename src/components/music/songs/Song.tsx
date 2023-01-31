@@ -4,7 +4,7 @@ import RelatedArtists from "../artists/RelatedArtists";
 import { SongType } from "../../../types/api/Song";
 import RelatedAlbums from "../albums/RelatedAlbums";
 import RelatedMusicVideos from "../musicvideo/RelatedMusicVideo";
-import ItemDesc from "../itemDesc/ItemDesc";
+import ItemDesc from "../common/desc/ItemDesc";
 import SharedPlayButton from "../../player/SharedPlayButton";
 import LibraryButton from "../../library/LibraryButton";
 

@@ -3,7 +3,7 @@ import { ArtistType } from "../../../types/api/Artist";
 import RelatedAlbums from "../albums/RelatedAlbums";
 import RelatedPlaylists from "../playlists/RelatedPlaylists";
 import RelatedMusicVideos from "../musicvideo/RelatedMusicVideo";
-import ItemDesc from "../itemDesc/ItemDesc";
+import ItemDesc from "../common/desc/ItemDesc";
 import LibraryButton from "../../library/LibraryButton";
 
 interface Props {

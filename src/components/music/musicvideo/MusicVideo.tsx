@@ -8,7 +8,6 @@ import RelatedArtists from "../artists/RelatedArtists";
 import RelatedSongs from "../songs/RelatedSongs";
 import { isMobile } from "react-device-detect";
 import { useAppDispatch } from "../../../store/store";
-import { useDispatch } from "react-redux";
 import { PlayerActions } from "../../../store/playerSlice";
 
 interface Props {
@@ -56,7 +55,6 @@ const MusicVideo: FC<Props> = ({ musicVideoData }) => {
         />
         <MusicVideoDesc attributes={attributes} />
       </main>
-      <p>{musicVideo.attributes.editorialNotes?.standard}</p>
       <FooterWrapper>
         <RelatedArtists artists={artists} />
         <RelatedAlbums albums={albums} />

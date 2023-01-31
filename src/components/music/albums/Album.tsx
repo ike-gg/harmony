@@ -5,7 +5,7 @@ import AlbumFooter from "./AlbumFooter";
 import AlbumTracks from "./AlbumTracks";
 import RelatedArtists from "../artists/RelatedArtists";
 import SharedPlayButton from "../../player/SharedPlayButton";
-import ItemDesc from "../itemDesc/ItemDesc";
+import ItemDesc from "../common/desc/ItemDesc";
 import LibraryButton from "../../library/LibraryButton";
 
 interface Props {

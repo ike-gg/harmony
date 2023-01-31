@@ -7,7 +7,7 @@ interface Props {
   children: string;
   icon?: IconName;
   className?: string;
-  theme?: "black" | "white";
+  theme?: "black" | "white" | "danger";
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -27,6 +27,7 @@ const Button: FC<Props> = ({
         {
           "bg-black text-white/90": theme === "black",
           "bg-white text-black border-neutral-100": theme === "white",
+          "bg-red-500 text-white": theme === "danger",
         }
       )}
     >

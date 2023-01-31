@@ -1,8 +1,5 @@
 import { FC } from "react";
-import {
-  ArtistsRelationship,
-  MusicVideosRelationship,
-} from "../../../types/api/Common";
+import { MusicVideosRelationship } from "../../../types/api/Common";
 import SubHeading from "../../UI/Headings/SubHeading";
 import HorizontalWrapper from "../../UI/Wrappers/HorizontalWrapper";
 import MusicVideoItem from "./MusicVideoItem";

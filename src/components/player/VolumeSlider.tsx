@@ -1,5 +1,5 @@
 import { Range, Root, Thumb, Track } from "@radix-ui/react-slider";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useSelector } from "react-redux";
 import { PlayerActions } from "../../store/playerSlice";
 import { RootState, useAppDispatch } from "../../store/store";
@@ -20,7 +20,6 @@ type VolumeLevels =
 const VolumeSlider: FC<Props> = ({ range, track }) => {
   const player = useSelector((state: RootState) => state.player);
   const dispatch = useAppDispatch();
-  // const [lastVolume, setLastVolume] = useState<number>(0);
 
   const { isMuted, volume } = player;
 
@@ -39,19 +38,10 @@ const VolumeSlider: FC<Props> = ({ range, track }) => {
 
   const toggleMuteHandle = () => {
     dispatch(PlayerActions.toggleMute());
-    // console.log("JUST AFTER DISPATCHING:", isMuted);
-    // if (isMuted) {
-    //   console.log("is muted.");
-    //   handleVolumeChange([lastVolume]);
-    // } else {
-    //   console.log("not muted");
-    //   setLastVolume(volume);
-    //   handleVolumeChange([0]);
-    // }
   };
 
   return (
-    <div className="hidden md:flex flex-row gap-4 w-36 items-center">
+    <div className="hidden md:flex flex-row gap-4 w-36 pr-2 items-center">
       <Icon iconName={icon} onClick={toggleMuteHandle} className="text-2xl" />
       <Root
         defaultValue={[volume]}

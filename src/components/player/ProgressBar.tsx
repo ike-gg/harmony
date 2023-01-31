@@ -1,5 +1,5 @@
 import { Range, Root, Thumb, Track } from "@radix-ui/react-slider";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import secondsToMinutesAndSeconds from "../../utils/secToMinSec";
 
 interface Props {

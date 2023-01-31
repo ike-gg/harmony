@@ -1,9 +1,13 @@
 import classNames from "classnames";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useLayoutEffect, useMemo } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../../store/store";
 import parseResults from "../../utils/parseResults";
 import Artwork from "../music/Artwork";
+import ItemName from "../music/common/ItemName";
+import ItemSubtitle from "../music/common/ItemSubtitle";
+import ItemTitle from "../music/common/ItemTitle";
 import Empty from "../UI/Empty";
 import Icon from "../UI/Icon";
 
@@ -12,7 +16,7 @@ const SearchResults = () => {
 
   if (!resultsData) return null;
 
-  const results = parseResults(resultsData);
+  const results = useMemo(() => parseResults(resultsData), [resultsData]);
 
   if (results.length === 0) return <Empty />;
 
@@ -60,23 +64,14 @@ const SearchResults = () => {
         <Artwork
           size="extrasmall"
           artworkUrl={url}
-          isTrack
           className={classNames("h-12 md:h-20 aspect-auto", {
             "rounded-full": type === "artists",
           })}
         />
-        <div className="text-ellipsis overflow-hidden whitespace-nowrap">
-          <p className="md:mt-1 text-xxs md:text-xs uppercase text-neutral-400 font-medium tracking-wide">
-            {resultType}
-          </p>
-          <h2
-            className={classNames(
-              "md:mt-1 text-xs md:text-base font-medium text-neutral-600 line-clamp-1 "
-            )}
-          >
-            {name}
-          </h2>
-          <p className="text-xxs md:text-xs text-neutral-500">{footerText}</p>
+        <div className="flex flex-col justify-evenly text-ellipsis overflow-hidden whitespace-nowrap">
+          <ItemSubtitle>{resultType}</ItemSubtitle>
+          <ItemTitle className="mt-0 pl-0">{name}</ItemTitle>
+          <ItemName className="pl-0">{footerText}</ItemName>
         </div>
         <Icon
           className="ml-auto text-2xl text-neutral-500 h-full flex my-auto line-clamp-1 "

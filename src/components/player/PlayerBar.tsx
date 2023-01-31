@@ -36,7 +36,7 @@ const PlayerBar = () => {
     audioSource.current.volume = volume;
   }, [isMuted, volume]);
 
-  if (!song) {
+  if (!song || !song.previews[0].url) {
     return null;
   }
 
@@ -59,7 +59,7 @@ const PlayerBar = () => {
         border: `2px solid ${addAlpha(bgColor, 0.5)}`,
         boxShadow: `0 0 15px ${addAlpha(bgColor, 0.7)}`,
       }}
-      className={`fixed w-full p-4 pr-6 md:p-3 gap-4 lg:max-w-screen-lg lg:m-auto bottom-0 flex items-center backdrop-blur-md rounded-t-md overflow-x-auto z-50 -translate-x-4`}
+      className={`fixed w-full p-4 pr-8 md:p-3 gap-4 lg:max-w-screen-lg lg:m-auto bottom-0 flex items-center backdrop-blur-md rounded-t-md overflow-x-auto z-50 -translate-x-4`}
     >
       <audio
         ref={audioSource}

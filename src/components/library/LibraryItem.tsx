@@ -2,6 +2,8 @@ import classNames from "classnames";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import Artwork from "../music/Artwork";
+import ItemName from "../music/common/ItemName";
+import ItemTitle from "../music/common/ItemTitle";
 
 interface Props {
   artworkUrl: string;
@@ -19,16 +21,14 @@ const LibraryItem: FC<Props> = ({
   roundedFull = false,
 }) => {
   return (
-    <Link to={detailsPage}>
+    <Link to={detailsPage} className="flex flex-col">
       <Artwork
         artworkUrl={artworkUrl}
         size="small"
-        className={classNames("w-full", { "rounded-full": roundedFull })}
+        className={classNames("shrink-0", { "rounded-full": roundedFull })}
       />
-      <h2 className="mt-1 text-sm md:text-base text-neutral-800 font-medium line-clamp-1">
-        {title}
-      </h2>
-      <p className="text-xs md:text-xs text-neutral-500 line-clamp-1">{name}</p>
+      <ItemTitle>{title}</ItemTitle>
+      <ItemName>{name}</ItemName>
     </Link>
   );
 };

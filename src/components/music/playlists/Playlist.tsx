@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { PlaylistType } from "../../../types/api/Playlist";
 import PlaylistTracks from "./PlaylistTracks";
-import ItemDesc from "../itemDesc/ItemDesc";
+import ItemDesc from "../common/desc/ItemDesc";
 import SharedPlayButton from "../../player/SharedPlayButton";
 import LibraryButton from "../../library/LibraryButton";
 

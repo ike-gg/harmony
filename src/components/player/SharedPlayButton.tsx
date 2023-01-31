@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { useSelector } from "react-redux";
 import { PlayerActions } from "../../store/playerSlice";
-import { RootState, useAppDispatch } from "../../store/store";
+import { useAppDispatch } from "../../store/store";
 import Button from "../UI/Button";
 
 interface Props {

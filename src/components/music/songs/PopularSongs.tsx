@@ -29,13 +29,9 @@ const PopularSongs = () => {
   if (songsInfo && !error && !isLoading) {
     const songs = songsInfo.results.songs[0].data;
     content = songs.map((song) => {
+      const { attributes, id, type } = song;
       return (
-        <SongItem
-          type="loaded"
-          attributes={song.attributes}
-          id={song.id}
-          key={song.id}
-        />
+        <SongItem type="loaded" attributes={attributes} id={id} key={id} />
       );
     });
   }

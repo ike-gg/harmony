@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { LibraryItem as LibraryItemType } from "../../types/api/Common";
+import Empty from "../UI/Empty";
 import LibraryItem from "./LibraryItem";
 import LibraryWrapper from "./LibraryWrapper";
 
@@ -76,18 +77,20 @@ const LibraryItems: FC<Props> = ({ libraryItems }) => {
 
   return (
     <>
-      {libraryItems.length === 0 && <h1>aha!?</h1>}
+      {libraryItems.length === 0 && <Empty />}
       {albums.length > 0 && (
         <LibraryWrapper title="Albums">{albums}</LibraryWrapper>
+      )}
+      {songs.length > 0 && (
+        <LibraryWrapper title="Songs" cols={7}>
+          {songs}
+        </LibraryWrapper>
       )}
       {artists.length > 0 && (
         <LibraryWrapper title="Artists">{artists}</LibraryWrapper>
       )}
       {playlists.length > 0 && (
         <LibraryWrapper title="Playlists">{playlists}</LibraryWrapper>
-      )}
-      {songs.length > 0 && (
-        <LibraryWrapper title="Songs">{songs}</LibraryWrapper>
       )}
     </>
   );

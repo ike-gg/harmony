@@ -4,7 +4,7 @@ interface Props {
   children: string;
 }
 
-const ItemSubtitle: FC<Props> = ({ children }) => {
+const DescSubtitle: FC<Props> = ({ children }) => {
   return (
     <span className="uppercase font-semibold tracking-wider opacity-60 text-xs md:text-sm">
       {children}
@@ -12,4 +12,4 @@ const ItemSubtitle: FC<Props> = ({ children }) => {
   );
 };
 
-export default ItemSubtitle;
+export default DescSubtitle;

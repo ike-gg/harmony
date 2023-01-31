@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, FormEvent, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import useAppleMusic from "../../hooks/useAppleMusic";
 import getSearchHint from "../../lib/getSearchHint";
 import { fetchResults, SearchActions } from "../../store/searchSlice";

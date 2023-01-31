@@ -3,6 +3,8 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 import { MusicVideoAttributes } from "../../../types/api/MusicVideo";
 import Artwork from "../Artwork";
+import ItemName from "../common/ItemName";
+import ItemTitle from "../common/ItemTitle";
 
 interface Props {
   type: "loaded";
@@ -35,10 +37,8 @@ const MusicVideoItem: FC<Props | SkeletonProps> = (props) => {
     <div>
       <Link to={detailsPage} className="flex flex-col w-64 snap-start">
         <Artwork artworkUrl={artworkUrl} size="small" className="aspect-auto" />
-        <h3 className="mt-1 pl-1 font-medium text-neutral-700 text-base text-ellipsis whitespace-nowrap overflow-hidden">
-          {name}
-        </h3>
-        <p className="pl-1 text-xs text-neutral-400">{artistName}</p>
+        <ItemTitle>{name}</ItemTitle>
+        <ItemName>{artistName}</ItemName>
       </Link>
     </div>
   );

@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 import { ArtistAttributes } from "../../../types/api/Artist";
 import Artwork from "../Artwork";
+import ItemTitle from "../common/ItemTitle";
 
 interface Props {
   attributes: ArtistAttributes;
@@ -23,7 +24,7 @@ const ArtistItem: FC<Props> = ({ attributes, id }) => {
           size="medium"
           className="rounded-full"
         />
-        <h4 className="text-center text-base text-neutral-600">{name}</h4>
+        <ItemTitle className="text-center">{name}</ItemTitle>
       </div>
     </Link>
   );

@@ -4,6 +4,8 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 import { AlbumAttributes } from "../../../types/api/Album";
 import Artwork from "../Artwork";
+import ItemName from "../common/ItemName";
+import ItemTitle from "../common/ItemTitle";
 
 interface Props {
   type: "loaded";
@@ -39,10 +41,8 @@ const AlbumItem: FC<Props | SkeletonProps> = (props) => {
       className={classNames("flex flex-col w-44 snap-start", className)}
     >
       <Artwork artworkUrl={artworkUrl} size="small" className="w-full" />
-      <h3 className="mt-1 pl-1 font-medium text-neutral-700 text-base text-ellipsis whitespace-nowrap overflow-hidden">
-        {name}
-      </h3>
-      <p className="pl-1 text-xs text-neutral-400">{artistName}</p>
+      <ItemTitle>{name}</ItemTitle>
+      <ItemName>{artistName}</ItemName>
     </Link>
   );
 };

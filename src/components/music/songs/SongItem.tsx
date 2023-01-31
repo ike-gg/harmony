@@ -19,7 +19,6 @@ interface SkeletonProps {
 }
 
 const SongItem: FC<Props | SkeletonProps> = (props) => {
-  const player = useSelector((state: RootState) => state.player);
   if (props.type === "notloaded") {
     return (
       <div className="flex flex-row gap-5 w-56 snap-start">
@@ -32,6 +31,8 @@ const SongItem: FC<Props | SkeletonProps> = (props) => {
     );
   }
 
+  const player = useSelector((state: RootState) => state.player);
+
   const { attributes, id } = props;
   const { artwork, name, artistName } = attributes;
   const { url: artworkUrl } = artwork;
@@ -41,10 +42,11 @@ const SongItem: FC<Props | SkeletonProps> = (props) => {
 
   const detailsPage = `/song/${id}`;
 
-  const itemTheme = parseArtwork(artwork);
+  const { bgColor, primaryColor } = parseArtwork(artwork);
+
   const styles: CSSProperties = {
-    background: itemTheme.bgColor,
-    color: itemTheme.primaryColor,
+    background: bgColor,
+    color: primaryColor,
   };
 
   return (

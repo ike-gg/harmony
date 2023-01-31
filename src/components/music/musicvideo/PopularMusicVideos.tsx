@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import useAppleMusic from "../../../hooks/useAppleMusic";
-import getPopularAlbums from "../../../lib/getPopularAlbums";
 import getPopularMusicVideos from "../../../lib/getPopularMusicVideos";
 import randomKey from "../../../utils/randomKey";
 import SubHeading from "../../UI/Headings/SubHeading";
