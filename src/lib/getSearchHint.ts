@@ -9,7 +9,6 @@ const getSearchHint = async (params?: Record<string, string>) => {
   const response = await fetch(url);
 
   if (!response.ok) {
-    console.log(response);
     throw new Error("Something went wrong...");
   }
 
