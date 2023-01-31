@@ -1,10 +1,11 @@
 import classNames from "classnames";
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { PlayerActions } from "../../../store/playerSlice";
 import { RootState, useAppDispatch } from "../../../store/store";
 import { AlbumRelationshipsTracks } from "../../../types/api/Album";
+import parseArtwork from "../../../utils/parseArtwork";
 import Icon from "../../UI/Icon";
 
 interface Props {
@@ -21,23 +22,23 @@ const AlbumTracks: FC<Props> = ({ tracks }) => {
     (track) => track.type !== "music-videos"
   );
 
-  const playMusic = async (songId: string) => {
-    dispatch(PlayerActions.setSong(songId));
-  };
-
   const content = tracksData.map((track) => {
     const { attributes, id } = track;
     const { name, trackNumber, artwork } = attributes;
 
     const detailsPage = `/song/${id}`;
 
-    const playTrack = playMusic.bind(null, id);
+    const playTrack = () => {
+      dispatch(PlayerActions.setSong(id));
+    };
+
     const isUnreleased = attributes.previews.length === 0;
     const isCurrentlyPlaying = player.id === id;
 
+    const itemTheme = parseArtwork(artwork);
     const activeSong: React.CSSProperties = {
-      background: `#${artwork.bgColor}`,
-      color: `#${artwork.textColor1}`,
+      background: itemTheme.bgColor,
+      color: itemTheme.primaryColor,
       borderRadius: "0.5rem",
       opacity: 1,
     };
@@ -64,7 +65,7 @@ const AlbumTracks: FC<Props> = ({ tracks }) => {
         )}
         <Link
           onClick={(e) => e.stopPropagation()}
-          to={isUnreleased ? "" : detailsPage}
+          to={detailsPage}
           className="ml-auto px-4"
         >
           <Icon

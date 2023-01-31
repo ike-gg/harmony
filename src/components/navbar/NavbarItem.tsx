@@ -12,26 +12,22 @@ interface Props {
   className?: string;
 }
 
-const NavbarItem: FC<Props> = ({
-  to,
-  iconName,
-  name,
-  end = false,
-  className,
-}) => {
+const NavbarItem: FC<Props> = (props) => {
+  const { to, iconName, name, end = false, className } = props;
   return (
     <NavLink
       to={to}
       end={end}
       className={({ isActive }) =>
         classNames(
-          "cursor-pointer rounded-md  text-neutral-500",
+          "cursor-pointer rounded-md",
           "flex flex-col items-center px-4 py-2",
           "md:flex-row md:gap-3",
           className,
           {
             "bg-black text-white": isActive,
-            "hover:bg-neutral-100 hover:shadow-inner": !isActive,
+            "hover:bg-neutral-100 hover:shadow-inner text-neutral-400":
+              !isActive,
           }
         )
       }
