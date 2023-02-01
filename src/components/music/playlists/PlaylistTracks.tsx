@@ -21,7 +21,7 @@ const PlaylistTracks: FC<Props> = ({ tracks }) => {
         key={id}
         attributes={attributes}
         songId={id}
-        title={name + "xd"}
+        title={name}
         cover
         name={artist}
       />
