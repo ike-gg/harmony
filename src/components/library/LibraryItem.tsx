@@ -27,8 +27,20 @@ const LibraryItem: FC<Props> = ({
         size="small"
         className={classNames("shrink-0", { "rounded-full": roundedFull })}
       />
-      <ItemTitle>{title}</ItemTitle>
-      <ItemName>{name}</ItemName>
+      <ItemTitle
+        className={classNames("text-xs md:text-sm", {
+          "text-center": roundedFull,
+        })}
+      >
+        {title}
+      </ItemTitle>
+      <ItemName
+        className={classNames("text-xxs md:text-xs", {
+          "text-center": roundedFull,
+        })}
+      >
+        {name}
+      </ItemName>
     </Link>
   );
 };

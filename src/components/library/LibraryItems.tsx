@@ -82,12 +82,14 @@ const LibraryItems: FC<Props> = ({ libraryItems }) => {
         <LibraryWrapper title="Albums">{albums}</LibraryWrapper>
       )}
       {songs.length > 0 && (
-        <LibraryWrapper title="Songs" cols={7}>
+        <LibraryWrapper title="Songs" cols={6}>
           {songs}
         </LibraryWrapper>
       )}
       {artists.length > 0 && (
-        <LibraryWrapper title="Artists">{artists}</LibraryWrapper>
+        <LibraryWrapper title="Artists" cols={5}>
+          {artists}
+        </LibraryWrapper>
       )}
       {playlists.length > 0 && (
         <LibraryWrapper title="Playlists">{playlists}</LibraryWrapper>
