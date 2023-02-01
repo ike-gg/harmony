@@ -14,8 +14,10 @@ interface Props {
 
 const Song: FC<Props> = ({ songData }) => {
   const { id, attributes: song } = songData.data[0];
-  const { name, artistName, albumName, artwork, url } = song;
+  const { name, artistName, albumName, artwork, url, previews } = song;
   const text = `from ${albumName}, by ${artistName}`;
+
+  const isReleased = previews.length > 0;
 
   const {
     "music-videos": musicVideos,
@@ -32,8 +34,10 @@ const Song: FC<Props> = ({ songData }) => {
         text={text}
         urlItem={url}
       >
-        <SharedPlayButton id={id} />
-        <LibraryButton item={{ attributes: song, id, type: "songs" }} />
+        <>
+          {isReleased && <SharedPlayButton id={id} />}
+          <LibraryButton item={{ attributes: song, id, type: "songs" }} />
+        </>
       </ItemDesc>
       <FooterWrapper>
         <RelatedAlbums albums={albums} />

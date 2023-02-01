@@ -7,6 +7,8 @@ import { SongAttributes } from "../../../types/api/Song";
 import parseArtwork from "../../../utils/parseArtwork";
 import SharedMiniPlayButton from "../../player/SharedMiniPlayButton";
 import Artwork from "../Artwork";
+import ItemName from "../common/ItemName";
+import ItemTitle from "../common/ItemTitle";
 
 interface Props {
   type: "loaded";
@@ -53,11 +55,13 @@ const SongItem: FC<Props | SkeletonProps> = (props) => {
     <div className="relative rounded-md" style={isCurrentPlaying ? styles : {}}>
       <Link to={detailsPage} className="flex flex-row w-56 gap-2 snap-start">
         <Artwork artworkUrl={artworkUrl} size="extrasmall" />
-        <div className="flex flex-col pt-2 pr-2 basis-0 grow">
-          <h3 className="font-medium text-base leading-[1.2rem] line-clamp-2">
+        <div className="flex flex-col pt-1 pr-2">
+          <ItemTitle className="line-clamp-2" spaced={false}>
             {name}
-          </h3>
-          <p className="text-xs line-clamp-2 opacity-70">{artistName}</p>
+          </ItemTitle>
+          <ItemName className="line-clamp-2" spaced={false}>
+            {artistName}
+          </ItemName>
         </div>
       </Link>
       <SharedMiniPlayButton id={id} />

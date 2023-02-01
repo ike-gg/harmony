@@ -26,7 +26,7 @@ const NavbarItem: FC<Props> = (props) => {
           className,
           {
             "bg-black text-white": isActive,
-            "hover:bg-neutral-100 hover:shadow-inner text-neutral-400":
+            "hover:bg-neutral-100 hover:shadow-inner text-neutral-500":
               !isActive,
           }
         )

@@ -11,7 +11,7 @@ const ItemName: FC<Props> = ({ children, className, spaced = true }) => {
   return (
     <p
       className={classNames(
-        "text-xxs md:text-xs opacity-40 line-clamp-1",
+        "text-xs md:text-sm opacity-40 text-ellipsis leading-tight md:leading-tight overflow-hidden line-clamp-1",
         className,
         { "pl-1": spaced }
       )}
