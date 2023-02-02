@@ -19,6 +19,9 @@ const Album: FC<Props> = ({ albumData }) => {
   const { artwork, artistName, name, url } = album;
 
   const tracksId = tracks?.data.map((item) => item.id);
+  const playableTracksId = tracks?.data
+    .filter((item) => item.attributes.previews.length > 0)
+    .map((item) => item.id);
 
   return (
     <article className="flex flex-col gap-8">
@@ -29,7 +32,7 @@ const Album: FC<Props> = ({ albumData }) => {
         text={artistName}
         urlItem={url}
       >
-        <SharedPlayButton id={tracksId} />
+        <SharedPlayButton id={playableTracksId} />
         <LibraryButton item={{ attributes: album, id, type: "albums" }} />
       </ItemDesc>
       <AlbumTracks tracks={tracks} />
