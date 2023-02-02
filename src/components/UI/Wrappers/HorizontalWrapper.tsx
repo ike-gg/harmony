@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
 import SrollingButton from "./ScrollingButton";
+import { isMobile } from "react-device-detect";
 
 export type ScrollDirections = "left" | "right";
 
@@ -56,7 +57,7 @@ const HorizontalWrapper: FC<Props> = ({ children, rows = 1 }) => {
       <div ref={horizontalWrapper} className={classes}>
         {children}
       </div>
-      {isOverflow && (
+      {isOverflow && !isMobile && (
         <>
           <SrollingButton handleScroll={horizontalScroll} direction="left" />
           <SrollingButton handleScroll={horizontalScroll} direction="right" />
