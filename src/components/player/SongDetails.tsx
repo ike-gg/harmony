@@ -12,7 +12,7 @@ const SongDetails: FC<Props> = ({ song }) => {
   const { url } = artwork;
 
   return (
-    <div className="flex flex-row items-center gap-2 w-40">
+    <div className="flex flex-row items-center gap-2 grow md:grow-0">
       <Artwork artworkUrl={url} size="icon" />
       <Marquee gradient={false} speed={30}>
         <div>

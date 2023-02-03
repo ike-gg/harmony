@@ -1,6 +1,6 @@
 import { Range, Root, Thumb, Track } from "@radix-ui/react-slider";
 import { FC } from "react";
-import secondsToMinutesAndSeconds from "../../utils/secToMinSec";
+import getTimeStamp from "../../utils/getTimeStamp";
 
 interface Props {
   currentTime?: number;
@@ -15,8 +15,8 @@ const Timestamp: FC<{ children?: string }> = ({ children }) => {
 };
 
 const ProgressBar: FC<Props> = ({ currentTime, duration, track, range }) => {
-  const currentTimestamp = secondsToMinutesAndSeconds(currentTime);
-  const endTimestamp = secondsToMinutesAndSeconds(duration);
+  const currentTimestamp = getTimeStamp(currentTime);
+  const endTimestamp = getTimeStamp(duration);
 
   let percentage = 0;
   if (currentTime && duration) {
