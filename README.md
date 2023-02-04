@@ -12,11 +12,11 @@ Written in React, React Router, Redux Toolkit, TailwindCSS.
 
 ## Features
 
-- show currently popular songs, artists, playlists, albums at the moment,
-- search for any content,
-- play previews of songs,
-- play previews of music videos,
-- user library
+- Show current popular songs, artists, playlists, albums,
+- Search for any content,
+- Play previews of songs,
+- play music video previews,
+- User library
 
 ## Installation
 
