@@ -24,7 +24,7 @@ const RootLayout = () => {
       <main className="py-4 flex flex-col gap-8 min-h-screen">
         <Outlet />
       </main>
-      <Footer className="mb-20" />
+      <Footer className="mb-36" />
       <PlayerBar />
     </div>
   );
