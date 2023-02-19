@@ -31,14 +31,13 @@ const MusicVideo: FC<Props> = ({ musicVideoData }) => {
   return (
     <article className="flex flex-col gap-8">
       <main className="flex flex-col gap-3 relative">
-        {!isMobile && (
-          <video
-            className="rounded-lg blur-3xl scale-100 absolute w-full"
-            src={videoUrl}
-            ref={musicref}
-            muted
-          />
-        )}
+        <video
+          className="rounded-lg blur-3xl scale-100 absolute w-full"
+          src={videoUrl}
+          ref={musicref}
+          muted
+          playsInline
+        />
         <video
           className="rounded-lg z-20"
           src={videoUrl}
@@ -51,6 +50,7 @@ const MusicVideo: FC<Props> = ({ musicVideoData }) => {
             (musicref.current!.currentTime = e.currentTarget.currentTime)
           }
           controls
+          playsInline
           poster={thumbnail}
         />
         <MusicVideoDesc attributes={attributes} />

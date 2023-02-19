@@ -16,7 +16,7 @@ const Hyperlink: FC<Props> = ({ href, children, target, icon, className }) => {
     <a
       className={classNames(
         className,
-        "bg-black px-3 py-1 inline-block rounded-md text-base text-white/90 md:text-base"
+        "bg-black px-3 py-1 inline-block rounded-md text-sm md:text-base text-white/90 md:text-base"
       )}
       href={href}
       target={target}

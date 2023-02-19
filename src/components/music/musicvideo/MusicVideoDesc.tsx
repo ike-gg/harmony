@@ -13,13 +13,13 @@ const MusicVideoDesc: FC<Props> = ({ attributes }) => {
   return (
     <div className="flex flex-col gap-2 md:flex-row md:justify-between">
       <div className="grow">
-        <h2 className="text-base font-semibold opacity-80 line-clamp-1">
+        <h2 className="text-sm md:text-base font-medium opacity-60 line-clamp-1">
           {artistName}
         </h2>
-        <h1 className="text-lg md:text-2xl font-semibold line-clamp-1">
-          {name}
-        </h1>
-        <h3 className="font-normal pb-1 opacity-50 line-clamp-1">{genre}</h3>
+        <h1 className="text-lg md:text-2xl font-semibold">{name}</h1>
+        <h3 className="text-sm md:text-base font-normal pb-1 opacity-50 line-clamp-1">
+          {genre}
+        </h3>
       </div>
       <div>
         <Hyperlink href={url} icon="external-link-alt">
