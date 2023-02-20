@@ -1,4 +1,5 @@
-import { CSSProperties, FC } from "react";
+import { FC } from "react";
+import SlidingText from "../../../UI/SlidingText";
 
 interface Props {
   children: string;
@@ -6,8 +7,10 @@ interface Props {
 
 const DescTitle: FC<Props> = ({ children }) => {
   return (
-    <h1 className="text-3xl md:text-5xl font-semibold pb-1 line-clamp-1">
-      {children}
+    <h1 className="text-3xl md:text-5xl font-semibold ">
+      <SlidingText delay={0.2} duration={0.4}>
+        {children}
+      </SlidingText>
     </h1>
   );
 };

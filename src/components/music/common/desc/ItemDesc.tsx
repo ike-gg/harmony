@@ -1,5 +1,6 @@
 import { CSSProperties, FC } from "react";
 import { Artwork as ArtworkType } from "../../../../types/api/Common";
+import { motion } from "framer-motion";
 import parseArtwork from "../../../../utils/parseArtwork";
 import Hyperlink from "../../../UI/Hyperlink";
 import Artwork from "../../Artwork";
@@ -25,8 +26,8 @@ const ItemDesc: FC<Props> = (props) => {
   const styles: CSSProperties = { color: itemTheme.primaryColor };
 
   return (
-    <main
-      style={cardStyles}
+    <motion.main
+      style={{ ...cardStyles }}
       className="flex flex-col gap-3 items-center md:items-stretch md:flex-row md:gap-6 p-8 rounded-lg"
     >
       <figure className="w-3/5 md:max-w-[16rem] h-full">
@@ -53,7 +54,7 @@ const ItemDesc: FC<Props> = (props) => {
           </div>
         </div>
       </div>
-    </main>
+    </motion.main>
   );
 };
 

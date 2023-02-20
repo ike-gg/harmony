@@ -1,12 +1,5 @@
-import classNames from "classnames";
-import { CSSProperties, FC } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { PlayerActions } from "../../../store/playerSlice";
-import { RootState, useAppDispatch } from "../../../store/store";
+import { FC } from "react";
 import { AlbumRelationshipsTracks } from "../../../types/api/Album";
-import parseArtwork from "../../../utils/parseArtwork";
-import Icon from "../../UI/Icon";
 import Track from "../track/Track";
 
 interface Props {
