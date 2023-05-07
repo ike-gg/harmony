@@ -1,25 +1,62 @@
-# [Harmony](https://harmony-pi.vercel.app/#/)
+![banner](https://i.imgur.com/EY4KTyO.png)
 
-![img](https://i.imgur.com/EY4KTyO.png)
+<br />
+<div align="center">
+  <h2 align="center">Harmony</h2>
 
-## Description
+  <p align="center">
+    Music App based on Apple Music API.
+    <br />
+    <a href="https://harmony-pi.vercel.app/#/">View Live</a>
+    ·
+    <a href="https://github.com/ike-gg/harmony/issues">Report Bug</a>
+  </p>
+</div>
 
-Simple web music app, based on the [Apple Music Kit](https://developer.apple.com/documentation/applemusicapi/).
+## About The Project
 
-Written in React, React Router, Redux Toolkit, TailwindCSS.
+Harmony is an application that allows users to browse music-related content, including albums, songs, artists, and music videos.
 
-[Check live](https://harmony-pi.vercel.app/#/)
+It is built using the Apple Music Kit API and is completely free to use, offering only 30-second song previews.
 
-## Features
+The app also provides the ability to save items to a personal library for easy access later on.
 
-- Show current popular songs, artists, playlists, albums,
-- Search for any content,
-- Play previews of songs,
-- play music video previews,
-- User library
+---
 
-## Installation
+## Built with
 
-`npm install`
+![discordjs](https://img.shields.io/badge/react-000000?style=for-the-badge&logo=react&logoColor=FFFFFF)
+![router](https://img.shields.io/badge/react%20router-000000?style=for-the-badge&logo=reactrouter&logoColor=FFFFFF)
+![typescript](https://img.shields.io/badge/typescript-000000?style=for-the-badge&logo=typescript&logoColor=FFFFFF)
+![tailwind](https://img.shields.io/badge/tailwind-000000?style=for-the-badge&logo=tailwindcss&logoColor=FFFFFF)
+![vercel](https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=FFFFFF)
+![applemusic](https://img.shields.io/badge/Apple%20Music-000000?style=for-the-badge&logo=applemusic&logoColor=FFFFFF)
+![vite](https://img.shields.io/badge/Vite-000000?style=for-the-badge&logo=vite&logoColor=FFFFFF)
 
-`npm run dev`
+---
+
+## Getting Started
+
+1. Clone repo
+
+```
+git clone https://github.com/ike-gg/Harmony
+```
+
+2. Install dependencies
+
+```
+npm install
+```
+
+3. Run the app
+
+```
+npm run start
+```
+
+---
+
+## Contributing
+
+To contribute, simply fork this project and create a pull request with your changes. Whether it's a new feature, bug fix, or documentation improvement, we appreciate all contributions. Thank you for your interest in helping to make this project even better!
